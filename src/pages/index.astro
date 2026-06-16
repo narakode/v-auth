@@ -1,5 +1,23 @@
 ---
+import { Icon } from "astro-icon/components"
 
+const tools = [
+	{
+		name: 'Google Search Result Preview',
+		description: 'Preview your page in google search result',
+		icon: 'tabler:world-search'
+	},
+	{
+		name: 'Open Graph Preview',
+		description: 'Preview your page in all media sites',
+		icon: 'tabler:photo-alt'
+	},
+	{
+		name: 'SEO HTML Head Meta Tag Generator',
+		description: 'Generate SEO HTML code for head meta tag',
+		icon: 'tabler:file-code'
+	},
+]
 ---
 
 <html lang="en">
@@ -12,6 +30,14 @@
 		<title>Astro</title>
 	</head>
 	<body>
-		<h1>Astro</h1>
+		<h1>Free Seo Tools</h1>
+
+		<main>
+			{tools.map(tool => <div>
+				<Icon name={tool.icon} />
+				<h2>{tool.name}</h2>
+				<p>{tool.description}</p>
+			</div>)}
+		</main>
 	</body>
 </html>
