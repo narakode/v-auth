@@ -15,42 +15,113 @@ import { Icon } from 'astro-icon/components';
 
     <div class="grid gap-6 items-start lg:grid-cols-2">
       <Card class="space-y-4">
-        <FormItem id="title" label="Title">
-          <Input type="text" id="title" placeholder="Title" name="site_title" />
+        <FormItem id="site_title" label="Title">
+          <Input
+            type="text"
+            id="site_title"
+            placeholder="Title"
+            name="site_title"
+          />
         </FormItem>
-        <FormItem id="url" label="URL">
-          <Input type="text" id="url" placeholder="URL" name="site_url" />
+        <FormItem id="site_url" label="URL">
+          <Input type="text" id="site_url" placeholder="URL" name="site_url" />
         </FormItem>
-        <FormItem id="description" label="Description">
+        <FormItem id="site_description" label="Description">
           <Input
             tag="textarea"
             rows="4"
-            id="description"
+            id="site_description"
             placeholder="Description"
             name="site_description"
           />
         </FormItem>
-        <FormItem id="icon" label="Icon">
-          <Input type="file" accept="image/*" id="icon" name="site_icon" />
+        <FormItem id="site_icon" label="Icon">
+          <Input type="file" accept="image/*" id="site_icon" name="site_icon" />
         </FormItem>
       </Card>
 
       <Card class="font-[Google_Sans]">
         <div class="space-y-1">
-          <div class="flex items-center gap-2">
+          <div id="preview_icon" class="flex items-center gap-2 group">
             <Icon
               name="tabler:world"
-              class="size-7 flex-shrink-0 text-slate-600"
+              class="group-[.active]:hidden size-7 flex-shrink-0 text-slate-600"
+            />
+            <img
+              src=""
+              alt=""
+              class="hidden group-[.active]:block rounded-full size-7 flex-shrink-0"
             />
             <div>
-              <p class="text-sm">website.my.id</p>
-              <p class="text-xs text-slate-500">https://website.my.id</p>
+              <p class="text-sm" id="preview_url">website.my.id</p>
+              <p class="text-xs text-slate-500" id="preview_url_link">
+                https://website.my.id
+              </p>
             </div>
           </div>
-          <p class="text-[22px]/[28px]">My Website</p>
-          <p class="text-sm text-slate-600">My website description.</p>
+          <p class="text-[22px]/[28px]" id="preview_title">My Website</p>
+          <p class="text-sm text-slate-600" id="preview_description">
+            My website description.
+          </p>
         </div>
       </Card>
     </div>
   </div>
 </Default>
+
+<script>
+  const siteTitle = document.querySelector('#site_title') as HTMLInputElement;
+  const siteUrl = document.querySelector('#site_url') as HTMLInputElement;
+  const siteDescription = document.querySelector(
+    '#site_description',
+  ) as HTMLInputElement;
+  const siteIcon = document.querySelector('#site_icon') as HTMLInputElement;
+
+  const previewUrl = document.querySelector(
+    '#preview_url',
+  ) as HTMLParagraphElement;
+  const previewUrlLink = document.querySelector(
+    '#preview_url_link',
+  ) as HTMLParagraphElement;
+  const previewTitle = document.querySelector(
+    '#preview_title',
+  ) as HTMLParagraphElement;
+  const previewDescription = document.querySelector(
+    '#preview_description',
+  ) as HTMLParagraphElement;
+  const previewIcon = document.querySelector('#preview_icon') as HTMLDivElement;
+
+  const defaultPreviewTitle = previewTitle.textContent;
+  const defaultPreviewUrl = previewUrl.textContent;
+  const defaultPreviewDescription = previewDescription.textContent;
+
+  siteTitle.addEventListener('input', (e) => {
+    previewTitle.innerText = siteTitle.value || defaultPreviewTitle;
+  });
+  siteUrl.addEventListener('input', (e) => {
+    previewUrl.innerText = siteUrl.value || defaultPreviewUrl;
+    previewUrlLink.innerText = `https://${siteUrl.value || defaultPreviewUrl}`;
+  });
+  siteDescription.addEventListener('input', (e) => {
+    previewDescription.innerText =
+      siteDescription.value || defaultPreviewDescription;
+  });
+  siteIcon.addEventListener('input', () => {
+    const iconImg = previewIcon.querySelector('img') as HTMLImageElement;
+
+    if (!siteIcon.files?.length) {
+      URL.revokeObjectURL(iconImg.src);
+
+      iconImg.src = '';
+      previewIcon.classList.remove('active');
+
+      return;
+    }
+
+    const imgSrc = URL.createObjectURL(siteIcon.files[0]);
+
+    iconImg.src = imgSrc;
+
+    previewIcon.classList.add('active');
+  });
+</script>
