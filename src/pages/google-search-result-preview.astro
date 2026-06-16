@@ -4,6 +4,7 @@ import Heading from '../components/base/Heading.astro';
 import Card from '../components/base/Card.astro';
 import FormItem from '../components/base/FormItem.astro';
 import Input from '../components/base/Input.astro';
+import { Icon } from 'astro-icon/components';
 ---
 
 <Default>
@@ -12,25 +13,44 @@ import Input from '../components/base/Input.astro';
       Google Search Result Preview
     </Heading>
 
-    <Card class="space-y-4">
-      <FormItem id="title" label="Title">
-        <Input type="text" id="title" placeholder="Title" name="site_title" />
-      </FormItem>
-      <FormItem id="url" label="URL">
-        <Input type="text" id="url" placeholder="URL" name="site_url" />
-      </FormItem>
-      <FormItem id="description" label="Description">
-        <Input
-          tag="textarea"
-          rows="4"
-          id="description"
-          placeholder="Description"
-          name="site_description"
-        />
-      </FormItem>
-      <FormItem id="icon" label="Icon">
-        <Input type="file" accept="image/*" id="icon" name="site_icon" />
-      </FormItem>
-    </Card>
+    <div class="grid gap-6 items-start lg:grid-cols-2">
+      <Card class="space-y-4">
+        <FormItem id="title" label="Title">
+          <Input type="text" id="title" placeholder="Title" name="site_title" />
+        </FormItem>
+        <FormItem id="url" label="URL">
+          <Input type="text" id="url" placeholder="URL" name="site_url" />
+        </FormItem>
+        <FormItem id="description" label="Description">
+          <Input
+            tag="textarea"
+            rows="4"
+            id="description"
+            placeholder="Description"
+            name="site_description"
+          />
+        </FormItem>
+        <FormItem id="icon" label="Icon">
+          <Input type="file" accept="image/*" id="icon" name="site_icon" />
+        </FormItem>
+      </Card>
+
+      <Card class="font-[Google_Sans]">
+        <div class="space-y-1">
+          <div class="flex items-center gap-2">
+            <Icon
+              name="tabler:world"
+              class="size-7 flex-shrink-0 text-slate-600"
+            />
+            <div>
+              <p class="text-sm">website.my.id</p>
+              <p class="text-xs text-slate-500">https://website.my.id</p>
+            </div>
+          </div>
+          <p class="text-[22px]/[28px]">My Website</p>
+          <p class="text-sm text-slate-600">My website description.</p>
+        </div>
+      </Card>
+    </div>
   </div>
 </Default>
