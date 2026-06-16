@@ -1,5 +1,7 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+@plugin "@tailwindcss/forms";
 
 @theme {
-    --font-sans: 'DM Sans', sans-serif;
+  --font-sans: 'DM Sans', sans-serif;
 }

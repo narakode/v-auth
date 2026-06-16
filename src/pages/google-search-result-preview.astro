@@ -1,0 +1,36 @@
+---
+import Default from '../layouts/Default.astro';
+import Heading from '../components/base/Heading.astro';
+import Card from '../components/base/Card.astro';
+import FormItem from '../components/base/FormItem.astro';
+import Input from '../components/base/Input.astro';
+---
+
+<Default>
+  <div class="container mx-auto px-4 space-y-6">
+    <Heading description="Preview your page in google search result.">
+      Google Search Result Preview
+    </Heading>
+
+    <Card class="space-y-4">
+      <FormItem id="title" label="Title">
+        <Input type="text" id="title" placeholder="Title" name="site_title" />
+      </FormItem>
+      <FormItem id="url" label="URL">
+        <Input type="text" id="url" placeholder="URL" name="site_url" />
+      </FormItem>
+      <FormItem id="description" label="Description">
+        <Input
+          tag="textarea"
+          rows="4"
+          id="description"
+          placeholder="Description"
+          name="site_description"
+        />
+      </FormItem>
+      <FormItem id="icon" label="Icon">
+        <Input type="file" accept="image/*" id="icon" name="site_icon" />
+      </FormItem>
+    </Card>
+  </div>
+</Default>
