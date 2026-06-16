@@ -9,7 +9,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "prepare": "husky"
   },
   "dependencies": {
     "@fontsource/dm-sans": "^5.2.8",
@@ -20,6 +21,16 @@
     "tailwindcss": "^4.3.1"
   },
   "devDependencies": {
-    "astro-icon": "^1.1.5"
+    "astro-icon": "^1.1.5",
+    "eslint": "^10.5.0",
+    "globals": "^17.6.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.0.7",
+    "prettier": "3.8.4",
+    "typescript-eslint": "^8.61.1"
+  },
+  "lint-staged": {
+    "*.{astro,js,ts,css,md}": "prettier --write",
+    "*.{astro,js,ts}": "eslint --cache --fix"
   }
 }
