@@ -23,6 +23,14 @@ import { Icon } from 'astro-icon/components';
             name="site_title"
           />
         </FormItem>
+        <FormItem id="site_name" label="Name">
+          <Input
+            type="text"
+            id="site_name"
+            placeholder="Name"
+            name="site_name"
+          />
+        </FormItem>
         <FormItem id="site_url" label="URL">
           <Input type="text" id="site_url" placeholder="URL" name="site_url" />
         </FormItem>
@@ -53,8 +61,8 @@ import { Icon } from 'astro-icon/components';
               class="hidden group-[.active]:block rounded-full size-7 flex-shrink-0"
             />
             <div>
-              <p class="text-sm" id="preview_url">website.my.id</p>
-              <p class="text-xs text-slate-500" id="preview_url_link">
+              <p class="text-sm" id="preview_name">Website</p>
+              <p class="text-xs text-slate-500" id="preview_url">
                 https://website.my.id
               </p>
             </div>
@@ -71,17 +79,18 @@ import { Icon } from 'astro-icon/components';
 
 <script>
   const siteTitle = document.querySelector('#site_title') as HTMLInputElement;
+  const siteName = document.querySelector('#site_name') as HTMLInputElement;
   const siteUrl = document.querySelector('#site_url') as HTMLInputElement;
   const siteDescription = document.querySelector(
     '#site_description',
   ) as HTMLInputElement;
   const siteIcon = document.querySelector('#site_icon') as HTMLInputElement;
 
+  const previewName = document.querySelector(
+    '#preview_name',
+  ) as HTMLParagraphElement;
   const previewUrl = document.querySelector(
     '#preview_url',
-  ) as HTMLParagraphElement;
-  const previewUrlLink = document.querySelector(
-    '#preview_url_link',
   ) as HTMLParagraphElement;
   const previewTitle = document.querySelector(
     '#preview_title',
@@ -92,15 +101,18 @@ import { Icon } from 'astro-icon/components';
   const previewIcon = document.querySelector('#preview_icon') as HTMLDivElement;
 
   const defaultPreviewTitle = previewTitle.textContent;
-  const defaultPreviewUrl = previewUrl.textContent;
+  const defaultPreviewName = previewName.textContent;
+  const defaultPreviewUrl = previewName.textContent;
   const defaultPreviewDescription = previewDescription.textContent;
 
   siteTitle.addEventListener('input', (e) => {
     previewTitle.innerText = siteTitle.value || defaultPreviewTitle;
   });
+  siteName.addEventListener('input', (e) => {
+    previewName.innerText = siteName.value || defaultPreviewName;
+  });
   siteUrl.addEventListener('input', (e) => {
-    previewUrl.innerText = siteUrl.value || defaultPreviewUrl;
-    previewUrlLink.innerText = `https://${siteUrl.value || defaultPreviewUrl}`;
+    previewUrl.innerText = `https://${siteUrl.value || defaultPreviewUrl}`;
   });
   siteDescription.addEventListener('input', (e) => {
     previewDescription.innerText =
