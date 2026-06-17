@@ -13,8 +13,8 @@ import { Icon } from 'astro-icon/components';
       Google Search Result Preview
     </Heading>
 
-    <div class="flex flex-col gap-6 lg:flex-row lg:items-start">
-      <Card class="space-y-4 lg:flex-grow">
+    <div class="flex flex-col gap-6 xl:flex-row xl:items-start">
+      <Card class="space-y-4 xl:flex-grow">
         <FormItem id="site_title" label="Title">
           <Input
             type="text"
@@ -53,8 +53,8 @@ import { Icon } from 'astro-icon/components';
         </FormItem>
       </Card>
 
-      <Card class="font-preview-google-sans lg:flex-shrink-0 lg:w-[652px]">
-        <div>
+      <Card class="font-preview-google-sans xl:flex-shrink-0">
+        <div class="xl:w-[652px]">
           <div id="preview_icon" class="flex items-center gap-[12px] group">
             <div
               class="group-[.active]:hidden flex-shrink-0 flex items-center justify-center size-[28px] bg-[#e5edff] rounded-full text-[#1a0dab]"
@@ -79,7 +79,7 @@ import { Icon } from 'astro-icon/components';
             </div>
           </div>
           <p
-            class="text-[22px]/[28px] mt-[3px] pt-[5px] text-[#1a0dab] hover:underline"
+            class="text-[22px]/[28px] mt-[3px] pt-[5px] text-[#1a0dab] max-w-[575px] truncate hover:underline"
             id="preview_title"
           >
             My Website
@@ -119,10 +119,10 @@ import { Icon } from 'astro-icon/components';
   ) as HTMLParagraphElement;
   const previewIcon = document.querySelector('#preview_icon') as HTMLDivElement;
 
-  const defaultPreviewTitle = previewTitle.textContent;
-  const defaultPreviewName = previewName.textContent;
-  const defaultPreviewUrl = previewName.textContent;
-  const defaultPreviewDescription = previewDescription.textContent;
+  const defaultPreviewTitle = previewTitle.textContent.trim();
+  const defaultPreviewName = previewName.textContent.trim();
+  const defaultPreviewUrl = previewName.textContent.trim();
+  const defaultPreviewDescription = previewDescription.textContent.trim();
 
   siteTitle.addEventListener('input', (e) => {
     previewTitle.innerText = siteTitle.value || defaultPreviewTitle;
