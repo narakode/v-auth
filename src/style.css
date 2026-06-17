@@ -4,4 +4,6 @@
 
 @theme {
   --font-sans: 'DM Sans', sans-serif;
+  --font-preview-google-sans: 'Google Sans', Arial, sans-serif;
+  --font-preview-arial: Arial, sans-serif;
 }

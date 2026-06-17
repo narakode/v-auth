@@ -13,13 +13,13 @@ import { Icon } from 'astro-icon/components';
       Google Search Result Preview
     </Heading>
 
-    <div class="grid gap-6 items-start lg:grid-cols-2">
-      <Card class="space-y-4">
+    <div class="flex flex-col gap-6 lg:flex-row lg:items-start">
+      <Card class="space-y-4 lg:flex-grow">
         <FormItem id="site_title" label="Title">
           <Input
             type="text"
             id="site_title"
-            placeholder="Title"
+            placeholder="My Website"
             name="site_title"
           />
         </FormItem>
@@ -27,19 +27,24 @@ import { Icon } from 'astro-icon/components';
           <Input
             type="text"
             id="site_name"
-            placeholder="Name"
+            placeholder="Website"
             name="site_name"
           />
         </FormItem>
         <FormItem id="site_url" label="URL">
-          <Input type="text" id="site_url" placeholder="URL" name="site_url" />
+          <Input
+            type="text"
+            id="site_url"
+            placeholder="https://website.my.id"
+            name="site_url"
+          />
         </FormItem>
         <FormItem id="site_description" label="Description">
           <Input
             tag="textarea"
             rows="4"
             id="site_description"
-            placeholder="Description"
+            placeholder="My website description."
             name="site_description"
           />
         </FormItem>
@@ -48,27 +53,41 @@ import { Icon } from 'astro-icon/components';
         </FormItem>
       </Card>
 
-      <Card class="font-[Google_Sans]">
-        <div class="space-y-1">
-          <div id="preview_icon" class="flex items-center gap-2 group">
-            <Icon
-              name="tabler:world"
-              class="group-[.active]:hidden size-7 flex-shrink-0 text-slate-600"
-            />
+      <Card class="font-preview-google-sans lg:flex-shrink-0 lg:w-[652px]">
+        <div>
+          <div id="preview_icon" class="flex items-center gap-[12px] group">
+            <div
+              class="group-[.active]:hidden flex-shrink-0 flex items-center justify-center size-[28px] bg-[#e5edff] rounded-full text-[#1a0dab]"
+            >
+              <Icon name="material-symbols:globe" class="size-[18px]" />
+            </div>
             <img
               src=""
               alt=""
               class="hidden group-[.active]:block rounded-full size-7 flex-shrink-0"
             />
             <div>
-              <p class="text-sm" id="preview_name">Website</p>
-              <p class="text-xs text-slate-500" id="preview_url">
+              <p class="text-[14px]/[20px] text-[#1f1f1f]" id="preview_name">
+                Website
+              </p>
+              <p
+                class="text-[12px]/[18px] text-[#4d5156] font-preview-arial"
+                id="preview_url"
+              >
                 https://website.my.id
               </p>
             </div>
           </div>
-          <p class="text-[22px]/[28px]" id="preview_title">My Website</p>
-          <p class="text-sm text-slate-600" id="preview_description">
+          <p
+            class="text-[22px]/[28px] mt-[3px] pt-[5px] text-[#1a0dab] hover:underline"
+            id="preview_title"
+          >
+            My Website
+          </p>
+          <p
+            class="text-[14px]/[22px] text-[#6c6c6c] font-preview-arial"
+            id="preview_description"
+          >
             My website description.
           </p>
         </div>

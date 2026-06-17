@@ -15,6 +15,7 @@
   "dependencies": {
     "@fontsource/dm-sans": "^5.2.8",
     "@fontsource/google-sans": "^5.2.1",
+    "@iconify-json/material-symbols": "^1.2.78",
     "@iconify-json/tabler": "^1.2.35",
     "@tailwindcss/vite": "^4.3.1",
     "astro": "^6.4.7",
