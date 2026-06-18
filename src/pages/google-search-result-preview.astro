@@ -13,8 +13,8 @@ import { Icon } from 'astro-icon/components';
       Google Search Result Preview
     </Heading>
 
-    <div class="flex flex-col gap-6 xl:flex-row xl:items-start">
-      <Card class="space-y-4 xl:flex-grow">
+    <div class="flex flex-col gap-6 items-center xl:flex-row xl:items-start">
+      <Card class="space-y-4 w-full xl:flex-grow">
         <FormItem id="site_title" label="Title">
           <Input
             type="text"
@@ -53,8 +53,8 @@ import { Icon } from 'astro-icon/components';
         </FormItem>
       </Card>
 
-      <Card class="font-preview-google-sans xl:flex-shrink-0">
-        <div class="xl:w-[652px]">
+      <Card class="font-preview-google-sans w-full xl:w-fit xl:flex-shrink-0">
+        <div class="md:w-[652px]">
           <div id="preview_icon" class="flex items-center gap-[12px] group">
             <div
               class="group-[.active]:hidden flex-shrink-0 flex items-center justify-center size-[28px] bg-[#e5edff] rounded-full text-[#1a0dab]"
@@ -134,8 +134,10 @@ import { Icon } from 'astro-icon/components';
     previewUrl.innerText = `https://${siteUrl.value || defaultPreviewUrl}`;
   });
   siteDescription.addEventListener('input', (e) => {
-    previewDescription.innerText =
-      siteDescription.value || defaultPreviewDescription;
+    previewDescription.innerText = truncate(
+      siteDescription.value || defaultPreviewDescription,
+      155,
+    );
   });
   siteIcon.addEventListener('input', () => {
     const iconImg = previewIcon.querySelector('img') as HTMLImageElement;
@@ -155,4 +157,18 @@ import { Icon } from 'astro-icon/components';
 
     previewIcon.classList.add('active');
   });
+
+  function truncate(text: string, length: number): string {
+    if (text.length <= length) {
+      return text;
+    }
+
+    let end = length;
+
+    while (end < text.length && text[end] !== ' ') {
+      end++;
+    }
+
+    return text.slice(0, end) + '...';
+  }
 </script>
