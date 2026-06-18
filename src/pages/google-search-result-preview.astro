@@ -53,45 +53,70 @@ import { Icon } from 'astro-icon/components';
         </FormItem>
       </Card>
 
-      <Card class="font-preview-google-sans w-full xl:w-fit xl:flex-shrink-0">
-        <div class="md:w-[652px]">
-          <div id="preview_icon" class="flex items-center gap-[12px] group">
-            <div
-              class="group-[.active]:hidden flex-shrink-0 flex items-center justify-center size-[28px] bg-[#e5edff] rounded-full text-[#1a0dab]"
-            >
-              <Icon name="material-symbols:globe" class="size-[18px]" />
-            </div>
-            <img
-              src=""
-              alt=""
-              class="hidden group-[.active]:block rounded-full size-7 flex-shrink-0"
-            />
-            <div>
-              <p class="text-[14px]/[20px] text-[#1f1f1f]" id="preview_name">
-                Website
-              </p>
-              <p
-                class="text-[12px]/[18px] text-[#4d5156] font-preview-arial"
-                id="preview_url"
+      <div
+        id="preview_wrapper"
+        class="group device-desktop w-full xl:w-fit xl:flex-shrink-0"
+      >
+        <nav
+          class="border-slate-200 rounded-t-lg border-2 border-b-0 bg-white grid grid-cols-2"
+        >
+          <button
+            data-toggle-preview-device="desktop"
+            class="flex items-center gap-2 justify-center border-b-2 group-[.device-desktop]:border-red-700 group-[.device-mobile]:border-slate-200 p-3 text-slate-900 rounded-tl group-[.device-mobile]:cursor-pointer rounded-tr group-[.device-mobile]:hover:bg-slate-50"
+          >
+            <Icon name="tabler:device-desktop" />
+            Desktop
+          </button>
+          <button
+            data-toggle-preview-device="mobile"
+            class="flex items-center gap-2 justify-center border-b-2 group-[.device-mobile]:border-red-700 group-[.device-desktop]:border-slate-200 p-3 text-slate-900 group-[.device-desktop]:cursor-pointer rounded-tr group-[.device-desktop]:hover:bg-slate-50"
+          >
+            <Icon name="tabler:device-mobile" />
+            Mobile
+          </button>
+        </nav>
+        <Card hasTab class="font-preview-google-sans">
+          <div
+            class="md:group-[.device-mobile]:w-[375px] md:group-[.device-desktop]:w-[652px]"
+          >
+            <div id="preview_icon" class="flex items-center gap-[12px] group">
+              <div
+                class="group-[.active]:hidden flex-shrink-0 flex items-center justify-center size-[28px] bg-[#e5edff] rounded-full text-[#1a0dab]"
               >
-                https://website.my.id
-              </p>
+                <Icon name="material-symbols:globe" class="size-[18px]" />
+              </div>
+              <img
+                src=""
+                alt=""
+                class="hidden group-[.active]:block rounded-full size-7 flex-shrink-0"
+              />
+              <div>
+                <p class="text-[14px]/[20px] text-[#1f1f1f]" id="preview_name">
+                  Website
+                </p>
+                <p
+                  class="text-[12px]/[18px] text-[#4d5156] font-preview-arial"
+                  id="preview_url"
+                >
+                  https://website.my.id
+                </p>
+              </div>
             </div>
+            <p
+              class="text-[22px]/[28px] mt-[3px] pt-[5px] text-[#1a0dab] max-w-[575px] truncate hover:underline"
+              id="preview_title"
+            >
+              My Website
+            </p>
+            <p
+              class="text-[14px]/[22px] text-[#6c6c6c] font-preview-arial"
+              id="preview_description"
+            >
+              My website description.
+            </p>
           </div>
-          <p
-            class="text-[22px]/[28px] mt-[3px] pt-[5px] text-[#1a0dab] max-w-[575px] truncate hover:underline"
-            id="preview_title"
-          >
-            My Website
-          </p>
-          <p
-            class="text-[14px]/[22px] text-[#6c6c6c] font-preview-arial"
-            id="preview_description"
-          >
-            My website description.
-          </p>
-        </div>
-      </Card>
+        </Card>
+      </div>
     </div>
   </div>
 </Default>
@@ -105,6 +130,9 @@ import { Icon } from 'astro-icon/components';
   ) as HTMLInputElement;
   const siteIcon = document.querySelector('#site_icon') as HTMLInputElement;
 
+  const previewWrapper = document.querySelector(
+    '#preview_wrapper',
+  ) as HTMLDivElement;
   const previewName = document.querySelector(
     '#preview_name',
   ) as HTMLParagraphElement;
@@ -118,6 +146,10 @@ import { Icon } from 'astro-icon/components';
     '#preview_description',
   ) as HTMLParagraphElement;
   const previewIcon = document.querySelector('#preview_icon') as HTMLDivElement;
+
+  const togglePreviewDeviceButtons = document.querySelectorAll(
+    '[data-toggle-preview-device]',
+  );
 
   const defaultPreviewTitle = previewTitle.textContent.trim();
   const defaultPreviewName = previewName.textContent.trim();
@@ -156,6 +188,20 @@ import { Icon } from 'astro-icon/components';
     iconImg.src = imgSrc;
 
     previewIcon.classList.add('active');
+  });
+
+  togglePreviewDeviceButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const dataset = (button as HTMLButtonElement).dataset;
+
+      if (dataset.togglePreviewDevice === 'mobile') {
+        previewWrapper.classList.remove('device-desktop');
+        previewWrapper.classList.add('device-mobile');
+      } else {
+        previewWrapper.classList.remove('device-mobile');
+        previewWrapper.classList.add('device-desktop');
+      }
+    });
   });
 
   function truncate(text: string, length: number): string {
