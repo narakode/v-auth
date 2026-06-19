@@ -1,9 +1,11 @@
 ---
-const { id, label } = Astro.props;
+const { id, label, message } = Astro.props;
 ---
 
 <div class="flex flex-col gap-1">
   <label for={id}>{label}</label>
 
   <slot />
+
+  {message && <p class="text-sm text-slate-500">{message}</p>}
 </div>

@@ -51,6 +51,18 @@ import { Icon } from 'astro-icon/components';
         <FormItem id="site_icon" label="Icon">
           <Input type="file" accept="image/*" id="site_icon" name="site_icon" />
         </FormItem>
+        <FormItem
+          id="site_keywords"
+          label="Keywords"
+          message="Separated by commas"
+        >
+          <Input
+            type="text"
+            id="site_keywords"
+            placeholder="blog, fishing, travel, website"
+            name="site_keywords"
+          />
+        </FormItem>
       </Card>
 
       <div
@@ -132,6 +144,9 @@ import { Icon } from 'astro-icon/components';
     '#site_description',
   ) as HTMLInputElement;
   const siteIcon = document.querySelector('#site_icon') as HTMLInputElement;
+  const siteKeywords = document.querySelector(
+    '#site_keywords',
+  ) as HTMLInputElement;
 
   const previewWrapper = document.querySelector(
     '#preview_wrapper',
@@ -172,10 +187,10 @@ import { Icon } from 'astro-icon/components';
     previewUrl.innerText = `https://${siteUrl.value || defaultPreviewUrl}`;
   });
   siteDescription.addEventListener('input', (e) => {
-    previewDescription.innerText = truncate(
-      siteDescription.value || defaultPreviewDescription,
-      155,
-    );
+    setPreviewDescription();
+  });
+  siteKeywords.addEventListener('input', (e) => {
+    setPreviewDescription();
   });
   siteIcon.addEventListener('input', () => {
     const iconImg = previewIcon.querySelector('img') as HTMLImageElement;
@@ -209,6 +224,27 @@ import { Icon } from 'astro-icon/components';
       }
     });
   });
+
+  function setPreviewDescription() {
+    const innerText = truncate(
+      siteDescription.value || defaultPreviewDescription,
+      155,
+    );
+    const keywords = siteKeywords.value
+      .split(', ')
+      .map((keyword) => keyword.toLowerCase());
+
+    const innerHTML = innerText
+      .split(' ')
+      .map((text) =>
+        keywords.includes(text.toLowerCase().replace(/[^a-zA-Z0-9]/gi, ''))
+          ? `<b>${text}</b>`
+          : text,
+      )
+      .join(' ');
+
+    previewDescription.innerHTML = innerHTML;
+  }
 
   function truncate(text: string, length: number): string {
     if (text.length <= length) {
