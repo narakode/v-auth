@@ -58,11 +58,11 @@ import { Icon } from 'astro-icon/components';
         class="group device-desktop w-full xl:w-fit xl:flex-shrink-0"
       >
         <nav
-          class="border-slate-200 rounded-t-lg border-2 border-b-0 bg-white grid grid-cols-2"
+          class="hidden md:border-slate-200 md:rounded-t-lg md:border-2 md:border-b-0 md:bg-white md:grid md:grid-cols-2"
         >
           <button
             data-toggle-preview-device="desktop"
-            class="flex items-center gap-2 justify-center border-b-2 group-[.device-desktop]:border-red-700 group-[.device-mobile]:border-slate-200 p-3 text-slate-900 rounded-tl group-[.device-mobile]:cursor-pointer rounded-tr group-[.device-mobile]:hover:bg-slate-50"
+            class="flex items-center gap-2 justify-center border-b-2 group-[.device-desktop]:border-red-700 group-[.device-mobile]:border-slate-200 p-3 text-slate-900 rounded-tl group-[.device-mobile]:cursor-pointer rounded-tl group-[.device-mobile]:hover:bg-slate-50"
           >
             <Icon name="tabler:device-desktop" />
             Desktop
@@ -75,7 +75,10 @@ import { Icon } from 'astro-icon/components';
             Mobile
           </button>
         </nav>
-        <Card hasTab class="font-preview-google-sans">
+        <Card
+          customBorder
+          class="border-2 border-slate-200 rounded-lg font-preview-google-sans md:border-t-0 md:rounded-t-none"
+        >
           <div
             class="md:group-[.device-mobile]:w-[375px] md:group-[.device-desktop]:w-[652px]"
           >
@@ -103,13 +106,13 @@ import { Icon } from 'astro-icon/components';
               </div>
             </div>
             <p
-              class="text-[22px]/[28px] mt-[3px] pt-[5px] text-[#1a0dab] max-w-[575px] truncate hover:underline"
+              class="line-clamp-2 text-[22px]/[28px] mt-[3px] pt-[5px] text-[#1a0dab] hover:underline md:group-[.device-desktop]:w-[575px] md:group-[.device-desktop]:truncate"
               id="preview_title"
             >
               My Website
             </p>
             <p
-              class="text-[14px]/[22px] text-[#6c6c6c] font-preview-arial"
+              class="line-clamp-3 text-[14px]/[22px] text-[#6c6c6c] font-preview-arial"
               id="preview_description"
             >
               My website description.
@@ -157,7 +160,10 @@ import { Icon } from 'astro-icon/components';
   const defaultPreviewDescription = previewDescription.textContent.trim();
 
   siteTitle.addEventListener('input', (e) => {
-    previewTitle.innerText = siteTitle.value || defaultPreviewTitle;
+    previewTitle.innerText = truncate(
+      siteTitle.value || defaultPreviewTitle,
+      60,
+    );
   });
   siteName.addEventListener('input', (e) => {
     previewName.innerText = siteName.value || defaultPreviewName;

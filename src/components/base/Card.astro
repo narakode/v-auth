@@ -2,14 +2,14 @@
 const {
   tag: Tag = 'div',
   class: classList = '',
-  hasTab = false,
+  customBorder = false,
   ...attrs
 } = Astro.props;
 ---
 
 <Tag
   {...attrs}
-  class={`bg-white border border-slate-200 p-5 border-2 ${classList} ${hasTab ? 'border-t-0 rounded-b-lg' : 'rounded-lg'}`}
+  class={`bg-white p-5 ${classList} ${customBorder ? '' : 'border-2 border-slate-200 rounded-lg'}`}
 >
   <slot />
 </Tag>
