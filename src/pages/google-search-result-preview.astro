@@ -63,6 +63,13 @@ import { Icon } from 'astro-icon/components';
             name="site_keywords"
           />
         </FormItem>
+        <FormItem id="site_publish_date" label="Published At">
+          <Input
+            type="datetime-local"
+            id="site_publish_date"
+            name="site_publish_date"
+          />
+        </FormItem>
       </Card>
 
       <div
@@ -137,6 +144,11 @@ import { Icon } from 'astro-icon/components';
 </Default>
 
 <script>
+  import dayjs from 'dayjs';
+  import localizedFormat from 'dayjs/plugin/localizedFormat';
+
+  dayjs.extend(localizedFormat);
+
   const siteTitle = document.querySelector('#site_title') as HTMLInputElement;
   const siteName = document.querySelector('#site_name') as HTMLInputElement;
   const siteUrl = document.querySelector('#site_url') as HTMLInputElement;
@@ -146,6 +158,9 @@ import { Icon } from 'astro-icon/components';
   const siteIcon = document.querySelector('#site_icon') as HTMLInputElement;
   const siteKeywords = document.querySelector(
     '#site_keywords',
+  ) as HTMLInputElement;
+  const sitePublishDate = document.querySelector(
+    '#site_publish_date',
   ) as HTMLInputElement;
 
   const previewWrapper = document.querySelector(
@@ -190,6 +205,9 @@ import { Icon } from 'astro-icon/components';
     setPreviewDescription();
   });
   siteKeywords.addEventListener('input', (e) => {
+    setPreviewDescription();
+  });
+  sitePublishDate.addEventListener('input', (e) => {
     setPreviewDescription();
   });
   siteIcon.addEventListener('input', () => {
@@ -242,6 +260,14 @@ import { Icon } from 'astro-icon/components';
           : text,
       )
       .join(' ');
+
+    if (sitePublishDate.value) {
+      const publishDate = dayjs(sitePublishDate.value).format('DD MMM YYYY');
+
+      previewDescription.innerHTML = `<span>${publishDate}</span> — ${innerHTML}`;
+
+      return;
+    }
 
     previewDescription.innerHTML = innerHTML;
   }
