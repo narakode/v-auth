@@ -11,3 +11,18 @@ const { tag: Tag = 'input', type = 'text', ...attrs } = Astro.props;
         focus:border-red-700 focus:ring-red-700
     `}
 />
+
+<script>
+  const inputCountChars =
+    document.querySelectorAll<HTMLInputElement>('[data-count-chars]');
+
+  inputCountChars.forEach((input) => {
+    const countCharsEl = document.querySelector(
+      `#${input.id}-count-chars`,
+    ) as HTMLSpanElement;
+
+    input.addEventListener('input', (e) => {
+      countCharsEl.innerText = `${input.value.length}`;
+    });
+  });
+</script>
