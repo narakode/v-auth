@@ -1,0 +1,79 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const { skeleton = false } = Astro.props;
+---
+
+<div>
+  <div
+    id={skeleton ? '' : 'preview_icon'}
+    class="flex items-center gap-[12px] group"
+  >
+    {
+      skeleton ? (
+        <div class="size-[28px] bg-slate-100 rounded-full" />
+      ) : (
+        <div>
+          <div class="group-[.active]:hidden flex-shrink-0 flex items-center justify-center size-[28px] bg-[#e5edff] rounded-full text-[#1a0dab]">
+            <Icon name="material-symbols:globe" class="size-[18px]" />
+          </div>
+          <img
+            src=""
+            alt=""
+            class="hidden group-[.active]:block rounded-full size-[28px] flex-shrink-0"
+          />
+        </div>
+      )
+    }
+    <div>
+      {
+        skeleton ? (
+          <div class="h-[18px] w-[200px] bg-slate-100 rounded mb-1" />
+        ) : (
+          <p
+            class="text-[14px]/[20px] text-[#1f1f1f] line-clamp-1"
+            id={skeleton ? '' : 'preview_name'}
+          >
+            Website
+          </p>
+        )
+      }
+      {
+        skeleton ? (
+          <div class="h-[16px] w-[150px] bg-slate-100 rounded" />
+        ) : (
+          <p
+            class="text-[12px]/[18px] text-[#4d5156] font-preview-arial line-clamp-1"
+            id={skeleton ? '' : 'preview_url'}
+          >
+            https://website.my.id
+          </p>
+        )
+      }
+    </div>
+  </div>
+  {
+    skeleton ? (
+      <div class="h-[30px] max-w-[350px] bg-[#1a0dab]/20 rounded mt-3 mb-2" />
+    ) : (
+      <p
+        class="line-clamp-2 text-[22px]/[28px] mt-[3px] pt-[5px] text-[#1a0dab] hover:underline md:group-[.device-desktop]:w-[575px] md:group-[.device-desktop]:truncate"
+        id={skeleton ? '' : 'preview_title'}
+      >
+        My Website
+      </p>
+    )
+  }
+  {
+    skeleton ? (
+      <div class="h-[50px] w-full bg-slate-100 rounded" />
+    ) : (
+      <p
+        class="line-clamp-3 text-[14px]/[22px] text-[#6c6c6c] font-preview-arial"
+        id={skeleton ? '' : 'preview_description'}
+      >
+        My website description.
+      </p>
+    )
+  }
+</div>

@@ -5,6 +5,7 @@ import Card from '../components/base/Card.astro';
 import FormItem from '../components/base/FormItem.astro';
 import Input from '../components/base/Input.astro';
 import { Icon } from 'astro-icon/components';
+import SearchResultPreview from '../components/google/SearchResultPreview.astro';
 ---
 
 <Default>
@@ -117,46 +118,9 @@ import { Icon } from 'astro-icon/components';
           class="border-2 border-slate-200 rounded-lg font-preview-google-sans md:border-t-0 md:rounded-t-none"
         >
           <div
-            class="md:group-[.device-mobile]:w-[375px] md:group-[.device-desktop]:w-[652px]"
+            class="space-y-10 md:group-[.device-mobile]:w-[375px] md:group-[.device-desktop]:w-[652px]"
           >
-            <div id="preview_icon" class="flex items-center gap-[12px] group">
-              <div
-                class="group-[.active]:hidden flex-shrink-0 flex items-center justify-center size-[28px] bg-[#e5edff] rounded-full text-[#1a0dab]"
-              >
-                <Icon name="material-symbols:globe" class="size-[18px]" />
-              </div>
-              <img
-                src=""
-                alt=""
-                class="hidden group-[.active]:block rounded-full size-7 flex-shrink-0"
-              />
-              <div>
-                <p
-                  class="text-[14px]/[20px] text-[#1f1f1f] line-clamp-1"
-                  id="preview_name"
-                >
-                  Website
-                </p>
-                <p
-                  class="text-[12px]/[18px] text-[#4d5156] font-preview-arial line-clamp-1"
-                  id="preview_url"
-                >
-                  https://website.my.id
-                </p>
-              </div>
-            </div>
-            <p
-              class="line-clamp-2 text-[22px]/[28px] mt-[3px] pt-[5px] text-[#1a0dab] hover:underline md:group-[.device-desktop]:w-[575px] md:group-[.device-desktop]:truncate"
-              id="preview_title"
-            >
-              My Website
-            </p>
-            <p
-              class="line-clamp-3 text-[14px]/[22px] text-[#6c6c6c] font-preview-arial"
-              id="preview_description"
-            >
-              My website description.
-            </p>
+            <SearchResultPreview />
           </div>
         </Card>
       </div>

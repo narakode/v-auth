@@ -2,6 +2,7 @@
 import '@fontsource/dm-sans';
 import '@fontsource/google-sans';
 import '../style.css';
+import { Icon } from 'astro-icon/components';
 ---
 
 <html lang="en">
@@ -13,7 +14,77 @@ import '../style.css';
     <meta name="generator" content={Astro.generator} />
     <title>Astro</title>
   </head>
-  <body class="bg-slate-50 text-slate-900 py-20">
-    <slot />
+  <body class="bg-slate-50 text-slate-900">
+    <nav
+      class="bg-white px-4 h-14 flex items-center justify-between border-b-2 border-slate-200 relative"
+    >
+      <button data-toggle="#navbar-menu" class="group navbar-toggle">
+        <Icon name="tabler:menu-2" class="size-5 group-[.open]:hidden" />
+        <Icon name="tabler:x" class="size-5 hidden group-[.open]:block" />
+      </button>
+
+      <a href="" class="font-bold text-lg uppercase tracking-tight">Naraseo</a>
+
+      <button>
+        <Icon name="tabler:moon" class="size-5" />
+      </button>
+
+      <div
+        id="navbar-menu"
+        class="hidden absolute top-14 left-0 bg-white w-full px-4 border-b-2 border-slate-200 py-4 flex flex-col gap-4"
+        data-close-outside=".navbar-toggle"
+      >
+        <a href="" class="flex items-center gap-2">
+          <Icon name="tabler:tool" class="text-slate-900" />
+          SEO Tools</a
+        >
+        <a href="" class="flex items-center gap-2">
+          <Icon name="tabler:book-2" class="text-slate-900" />
+          Learn SEO</a
+        >
+        <a href="" class="flex items-center gap-2">
+          <Icon name="tabler:news" class="text-slate-900" />
+          Blog</a
+        >
+      </div>
+    </nav>
+
+    <div class="py-6">
+      <slot />
+    </div>
+
+    <script>
+      const toggles = document.querySelectorAll<HTMLElement>('[data-toggle]');
+      const closesOutside = document.querySelectorAll<HTMLElement>(
+        '[data-close-outside]',
+      );
+
+      toggles.forEach((toggle) => {
+        toggle.addEventListener('click', () => {
+          const target = document.querySelector(
+            toggle.dataset.toggle as string,
+          ) as HTMLDivElement;
+
+          target.classList.toggle('hidden');
+          toggle.classList.toggle('open');
+        });
+      });
+
+      closesOutside.forEach((el) => {
+        document.addEventListener('click', (e) => {
+          const exclude = document.querySelector(
+            el.dataset.closeOutside as string,
+          ) as HTMLElement;
+
+          if (
+            !el.contains(e.target as Node) &&
+            !exclude.contains(e.target as Node)
+          ) {
+            el.classList.add('hidden');
+            exclude.classList.remove('open');
+          }
+        });
+      });
+    </script>
   </body>
 </html>
