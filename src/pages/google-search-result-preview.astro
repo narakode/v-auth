@@ -48,13 +48,22 @@ import { Icon } from 'astro-icon/components';
             name="site_url"
           />
         </FormItem>
-        <FormItem id="site_description" label="Description">
+        <FormItem
+          id="site_description_input"
+          wrapperId="site_description"
+          label="Description"
+          message="The recommended description character length is under 155."
+          messageColor="warning"
+          messageVisibleByGroup
+          countChars
+        >
           <Input
             tag="textarea"
             rows="4"
-            id="site_description"
+            id="site_description_input"
             placeholder="My website description."
-            name="site_description"
+            name="site_description_input"
+            data-count-chars
           />
         </FormItem>
         <FormItem id="site_icon" label="Icon">
@@ -122,11 +131,14 @@ import { Icon } from 'astro-icon/components';
                 class="hidden group-[.active]:block rounded-full size-7 flex-shrink-0"
               />
               <div>
-                <p class="text-[14px]/[20px] text-[#1f1f1f]" id="preview_name">
+                <p
+                  class="text-[14px]/[20px] text-[#1f1f1f] line-clamp-1"
+                  id="preview_name"
+                >
                   Website
                 </p>
                 <p
-                  class="text-[12px]/[18px] text-[#4d5156] font-preview-arial"
+                  class="text-[12px]/[18px] text-[#4d5156] font-preview-arial line-clamp-1"
                   id="preview_url"
                 >
                   https://website.my.id
@@ -166,6 +178,9 @@ import { Icon } from 'astro-icon/components';
   const siteUrl = document.querySelector('#site_url') as HTMLInputElement;
   const siteDescription = document.querySelector(
     '#site_description',
+  ) as HTMLInputElement;
+  const siteDescriptionInput = document.querySelector(
+    '#site_description_input',
   ) as HTMLInputElement;
   const siteIcon = document.querySelector('#site_icon') as HTMLInputElement;
   const siteKeywords = document.querySelector(
@@ -218,7 +233,15 @@ import { Icon } from 'astro-icon/components';
   siteUrl.addEventListener('input', (e) => {
     previewUrl.innerText = `https://${siteUrl.value || defaultPreviewUrl}`;
   });
-  siteDescription.addEventListener('input', (e) => {
+  siteDescriptionInput.addEventListener('input', (e) => {
+    const input = siteDescriptionInput.value || defaultPreviewDescription;
+
+    if (input.length > 155) {
+      siteDescription.classList.add('message-visible');
+    } else {
+      siteDescription.classList.remove('message-visible');
+    }
+
     setPreviewDescription();
   });
   siteKeywords.addEventListener('input', (e) => {
@@ -262,7 +285,7 @@ import { Icon } from 'astro-icon/components';
 
   function setPreviewDescription() {
     const innerText = truncate(
-      siteDescription.value || defaultPreviewDescription,
+      siteDescriptionInput.value || defaultPreviewDescription,
       155,
     );
     const keywords = siteKeywords.value

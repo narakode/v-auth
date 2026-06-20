@@ -22,7 +22,8 @@ const { tag: Tag = 'input', type = 'text', ...attrs } = Astro.props;
     ) as HTMLSpanElement;
 
     input.addEventListener('input', (e) => {
-      countCharsEl.innerText = `${input.value.length}`;
+      countCharsEl.innerText =
+        input.value.length < 1 ? '' : `${input.value.length}`;
     });
   });
 </script>
