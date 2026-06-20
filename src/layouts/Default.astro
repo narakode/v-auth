@@ -15,41 +15,52 @@ import { Icon } from 'astro-icon/components';
     <title>Astro</title>
   </head>
   <body class="bg-slate-50 text-slate-900">
-    <nav
-      class="bg-white px-4 h-14 flex items-center justify-between border-b-2 border-slate-200 relative"
-    >
-      <button data-toggle="#navbar-menu" class="group navbar-toggle">
-        <Icon name="tabler:menu-2" class="size-5 group-[.open]:hidden" />
-        <Icon name="tabler:x" class="size-5 hidden group-[.open]:block" />
-      </button>
-
-      <a href="" class="font-bold text-lg uppercase tracking-tight">Naraseo</a>
-
-      <button>
-        <Icon name="tabler:moon" class="size-5" />
-      </button>
-
+    <nav class="bg-white border-b-2 border-slate-200 relative">
       <div
-        id="navbar-menu"
-        class="hidden absolute top-14 left-0 bg-white w-full px-4 border-b-2 border-slate-200 py-4 flex flex-col gap-4"
-        data-close-outside=".navbar-toggle"
+        class="container mx-auto px-4 h-14 flex items-center justify-between"
       >
-        <a href="" class="flex items-center gap-2">
-          <Icon name="tabler:tool" class="text-slate-900" />
-          SEO Tools</a
+        <button
+          data-toggle="#navbar-menu"
+          class="group navbar-toggle md:hidden"
         >
-        <a href="" class="flex items-center gap-2">
-          <Icon name="tabler:book-2" class="text-slate-900" />
-          Learn SEO</a
+          <Icon name="tabler:menu-2" class="size-5 group-[.open]:hidden" />
+          <Icon name="tabler:x" class="size-5 hidden group-[.open]:block" />
+        </button>
+
+        <a href="/" class="font-bold text-lg uppercase tracking-tight"
+          >Naraseo</a
         >
-        <a href="" class="flex items-center gap-2">
-          <Icon name="tabler:news" class="text-slate-900" />
-          Blog</a
+
+        <div
+          id="navbar-menu"
+          class="hidden absolute top-14 left-0 bg-white w-full border-y-2 border-slate-200 py-4 md:block md:top-0 md:left-1/2 md:-translate-x-1/2 md:border-0 md:bg-transparent md:w-auto"
+          data-close-outside=".navbar-toggle"
         >
+          <div
+            class="container mx-auto px-4 flex flex-col gap-4 md:px-0 md:flex-row md:gap-8"
+          >
+            <a href="" class="flex items-center gap-2 hover:text-red-700">
+              <Icon name="tabler:tool" />
+              SEO Tools</a
+            >
+            <a href="" class="flex items-center gap-2 hover:text-red-700">
+              <Icon name="tabler:book-2" />
+              Learn SEO</a
+            >
+            <a href="" class="flex items-center gap-2 hover:text-red-700">
+              <Icon name="tabler:news" />
+              Blog</a
+            >
+          </div>
+        </div>
+
+        <button>
+          <Icon name="tabler:moon" class="size-5" />
+        </button>
       </div>
     </nav>
 
-    <div class="py-6">
+    <div class="py-6 md:py-8 lg:py-10 xl:py-12">
       <slot />
     </div>
 
