@@ -1,7 +1,30 @@
 ---
 import { Icon } from 'astro-icon/components';
 
-const { skeleton = false } = Astro.props;
+interface Props {
+  skeleton?: boolean;
+  type?: '1' | '2' | '3';
+}
+
+const { skeleton = false, type = '1' } = Astro.props;
+
+const skeletonSizeClass = {
+  '1': {
+    name: 'w-[200px]',
+    url: 'w-[250px]',
+    title: 'max-w-[350px]',
+  },
+  '2': {
+    name: 'w-[250px]',
+    url: 'w-[150px]',
+    title: 'max-w-[200px]',
+  },
+  '3': {
+    name: 'w-[150px]',
+    url: 'w-[200px]',
+    title: 'max-w-[500px]',
+  },
+}[type];
 ---
 
 <div>
@@ -28,7 +51,9 @@ const { skeleton = false } = Astro.props;
     <div>
       {
         skeleton ? (
-          <div class="h-[18px] w-[200px] bg-slate-100 rounded mb-1" />
+          <div
+            class={`h-[18px] bg-slate-100 rounded mb-1 ${skeletonSizeClass.name}`}
+          />
         ) : (
           <p
             class="text-[14px]/[20px] text-[#1f1f1f] line-clamp-1"
@@ -40,7 +65,9 @@ const { skeleton = false } = Astro.props;
       }
       {
         skeleton ? (
-          <div class="h-[16px] w-[150px] bg-slate-100 rounded" />
+          <div
+            class={`h-[16px] bg-slate-100 rounded ${skeletonSizeClass.url}`}
+          />
         ) : (
           <p
             class="text-[12px]/[18px] text-[#4d5156] font-preview-arial line-clamp-1"
@@ -54,7 +81,9 @@ const { skeleton = false } = Astro.props;
   </div>
   {
     skeleton ? (
-      <div class="h-[30px] max-w-[350px] bg-[#1a0dab]/20 rounded mt-3 mb-2" />
+      <div
+        class={`h-[30px] bg-[#1a0dab]/20 rounded mt-3 mb-2 ${skeletonSizeClass.title}`}
+      />
     ) : (
       <p
         class="line-clamp-2 text-[22px]/[28px] mt-[3px] pt-[5px] text-[#1a0dab] hover:underline md:group-[.device-desktop]:w-[575px] md:group-[.device-desktop]:truncate"
