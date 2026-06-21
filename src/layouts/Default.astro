@@ -3,6 +3,11 @@ import '@fontsource/dm-sans';
 import '@fontsource/google-sans';
 import '../style.css';
 import { Icon } from 'astro-icon/components';
+
+const {
+  title = 'NaraSEO - Kumpulan Tool Gratis Untuk Kebutuhan SEO',
+  description = 'Kumpulan tool gratis seputar SEO untuk meningkatkan kualitas website Anda di hasil pencarian mesin pencari. Tool Preview Google Search Result, Open Graph Generator, dll.',
+} = Astro.props;
 ---
 
 <html lang="en">
@@ -12,7 +17,8 @@ import { Icon } from 'astro-icon/components';
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
+    <title>{title}</title>
+    <meta name="description" content={description} />
   </head>
   <body class="bg-slate-50 text-slate-900">
     <nav class="bg-white border-b-2 border-slate-200 relative">
@@ -22,6 +28,7 @@ import { Icon } from 'astro-icon/components';
         <button
           data-toggle="#navbar-menu"
           class="group navbar-toggle md:hidden"
+          title="Buka Menu Navigasi"
         >
           <Icon name="tabler:menu-2" class="size-5 group-[.open]:hidden" />
           <Icon name="tabler:x" class="size-5 hidden group-[.open]:block" />
@@ -54,7 +61,7 @@ import { Icon } from 'astro-icon/components';
           </div>
         </div>
 
-        <button>
+        <button title="Ganti Tema">
           <Icon name="tabler:moon" class="size-5" />
         </button>
       </div>
