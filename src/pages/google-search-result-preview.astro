@@ -211,16 +211,29 @@ import { Content } from '../contents/tools/google-search-result-preview.md';
     previewName.innerText = siteName.value || defaultPreviewName;
   });
   siteUrl.addEventListener('input', (e) => {
-    const url = new URL(siteUrl.value || defaultPreviewUrl);
-    const separator = ' › ';
+    const input = siteUrl.value || defaultPreviewUrl;
+    try {
+      const url = new URL(
+        input.startsWith('https://') || input.startsWith('http://')
+          ? input
+          : `http://${input}`,
+      );
+      const separator = ' › ';
 
-    const paths = url.pathname
-      .split('/')
-      .filter((path) => path !== '')
-      .join(separator);
+      const paths = url.pathname
+        .split('/')
+        .filter((path) => path !== '')
+        .join(separator);
 
-    previewUrlOrigin.innerText = url.origin;
-    previewUrlBreadcrumb.innerText = `${url.origin} ${paths}`;
+      previewUrlOrigin.innerText = url.origin;
+      previewUrlBreadcrumb.innerText = paths
+        ? `${url.origin} › ${paths}`
+        : url.origin;
+    } catch {
+      const url = input;
+      previewUrlOrigin.innerText = url;
+      previewUrlBreadcrumb.innerText = url;
+    }
   });
   siteDescriptionInput.addEventListener('input', (e) => {
     const input = siteDescriptionInput.value || defaultPreviewDescription;
