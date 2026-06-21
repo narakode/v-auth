@@ -6,6 +6,7 @@ import FormItem from '../components/base/FormItem.astro';
 import Input from '../components/base/Input.astro';
 import { Icon } from 'astro-icon/components';
 import SearchResultPreview from '../components/google/SearchResultPreview.astro';
+import { Content } from '../contents/tools/google-search-result-preview.md';
 ---
 
 <Default>
@@ -127,6 +128,12 @@ import SearchResultPreview from '../components/google/SearchResultPreview.astro'
           </div>
         </Card>
       </div>
+    </div>
+
+    <div class="prose prose-slate prose-h2:first:mt-0 mx-auto">
+      <Card>
+        <Content />
+      </Card>
     </div>
   </div>
 </Default>
