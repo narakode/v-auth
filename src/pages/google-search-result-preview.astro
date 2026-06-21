@@ -14,7 +14,7 @@ import { Content } from '../contents/tools/google-search-result-preview.md';
   description="Google search result preview tool adalah alat bantuan untuk mensimulasi halaman website di hasil pencarian google secara realtime dan otomatis."
 >
   <main class="container mx-auto px-4 space-y-6">
-    <Heading description="Preview your page in google search result.">
+    <Heading description="Simulasi Halaman Website di Hasil Pencarian Google.">
       Google Search Result Preview
     </Heading>
 
@@ -23,8 +23,8 @@ import { Content } from '../contents/tools/google-search-result-preview.md';
         <FormItem
           id="site_title_input"
           wrapperId="site_title"
-          label="Title"
-          message="The recommended title character length is under 60."
+          label="Judul Halaman"
+          message="Judul direkomendasikan sebaiknya kurang dari 60 karakter."
           messageColor="warning"
           messageVisibleByGroup
           countChars
@@ -37,7 +37,7 @@ import { Content } from '../contents/tools/google-search-result-preview.md';
             data-count-chars
           />
         </FormItem>
-        <FormItem id="site_name" label="Name">
+        <FormItem id="site_name" label="Nama Website">
           <Input
             type="text"
             id="site_name"
@@ -45,7 +45,7 @@ import { Content } from '../contents/tools/google-search-result-preview.md';
             name="site_name"
           />
         </FormItem>
-        <FormItem id="site_url" label="URL">
+        <FormItem id="site_url" label="URL Halaman">
           <Input
             type="text"
             id="site_url"
@@ -56,8 +56,8 @@ import { Content } from '../contents/tools/google-search-result-preview.md';
         <FormItem
           id="site_description_input"
           wrapperId="site_description"
-          label="Description"
-          message="The recommended description character length is under 155."
+          label="Deskripsi"
+          message="Deskripsi direkomendasikan sebaiknya kurang dari 155 karakter."
           messageColor="warning"
           messageVisibleByGroup
           countChars
@@ -76,8 +76,8 @@ import { Content } from '../contents/tools/google-search-result-preview.md';
         </FormItem>
         <FormItem
           id="site_keywords"
-          label="Keywords"
-          message="Separated by commas"
+          label="Kata Kunci"
+          message="Dipisahkan dengan komah"
         >
           <Input
             type="text"
@@ -86,7 +86,7 @@ import { Content } from '../contents/tools/google-search-result-preview.md';
             name="site_keywords"
           />
         </FormItem>
-        <FormItem id="site_publish_date" label="Published At">
+        <FormItem id="site_publish_date" label="Tanggal Publish">
           <Input
             type="datetime-local"
             id="site_publish_date"
