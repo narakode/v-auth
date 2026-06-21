@@ -48,7 +48,7 @@ const skeletonSizeClass = {
         </div>
       )
     }
-    <div>
+    <div class="max-w-[290px]">
       {
         skeleton ? (
           <div
@@ -73,7 +73,18 @@ const skeletonSizeClass = {
             class="text-[12px]/[18px] text-[#4d5156] font-preview-arial line-clamp-1"
             id={skeleton ? '' : 'preview_url'}
           >
-            https://website.my.id
+            <span
+              id="preview_url_origin"
+              class="md:hidden md:group-[.device-mobile]:inline"
+            >
+              https://website.my.id
+            </span>
+            <span
+              id="preview_url_breadcrumb"
+              class="hidden md:inline md:group-[.device-mobile]:hidden"
+            >
+              https://website.my.id
+            </span>
           </p>
         )
       }

@@ -170,8 +170,11 @@ import { Content } from '../contents/tools/google-search-result-preview.md';
   const previewName = document.querySelector(
     '#preview_name',
   ) as HTMLParagraphElement;
-  const previewUrl = document.querySelector(
-    '#preview_url',
+  const previewUrlOrigin = document.querySelector(
+    '#preview_url_origin',
+  ) as HTMLParagraphElement;
+  const previewUrlBreadcrumb = document.querySelector(
+    '#preview_url_breadcrumb',
   ) as HTMLParagraphElement;
   const previewTitle = document.querySelector(
     '#preview_title',
@@ -187,7 +190,7 @@ import { Content } from '../contents/tools/google-search-result-preview.md';
 
   const defaultPreviewTitle = previewTitle.textContent.trim();
   const defaultPreviewName = previewName.textContent.trim();
-  const defaultPreviewUrl = previewName.textContent.trim();
+  const defaultPreviewUrl = previewUrlOrigin.textContent.trim();
   const defaultPreviewDescription = previewDescription.textContent.trim();
 
   siteTitleInput.addEventListener('input', (e) => {
@@ -205,7 +208,16 @@ import { Content } from '../contents/tools/google-search-result-preview.md';
     previewName.innerText = siteName.value || defaultPreviewName;
   });
   siteUrl.addEventListener('input', (e) => {
-    previewUrl.innerText = `https://${siteUrl.value || defaultPreviewUrl}`;
+    const url = new URL(siteUrl.value || defaultPreviewUrl);
+    const separator = ' › ';
+
+    const paths = url.pathname
+      .split('/')
+      .filter((path) => path !== '')
+      .join(separator);
+
+    previewUrlOrigin.innerText = url.origin;
+    previewUrlBreadcrumb.innerText = `${url.origin} ${paths}`;
   });
   siteDescriptionInput.addEventListener('input', (e) => {
     const input = siteDescriptionInput.value || defaultPreviewDescription;
