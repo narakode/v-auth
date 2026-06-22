@@ -54,13 +54,57 @@ Nama website juga bisa ditentukan sendiri melalui struktur data yang dibuat oleh
 </html>
 ```
 
-### Alamat URL Halaman website
+### Alamat URL
 
-Alamat URL halaman website berisi alamat URL lengkap dari halaman yang ditampilkan.
+Alamat URL halaman website juga ditampilkan di google search result.
 
-Apabila halamanya berada di dalam path, misal (detik.com/blog/artkel-1), google akan menampilkan url tersebut dalam bentuk breadcrumb.
+![Alamat URL di google search result](./site_url.png)
 
-Breadcrumb adalah URL yang dipecah jadi beberapa path, setiap path dipisah dengan tanda >.
+Apabila URL nya berada di dalam path, misal (`https://id.wikipedia.org/wiki/Cristiano_Ronaldo`) maka google biasanya akan menampilkan URL tersebut dalam bentuk breadcrumb (`https://id.wikipedia.org > wiki > Cristiano_Ronaldo`).
+
+![Alamat URL breadcrumb di google search result](./site_url_breadcrumb.png)
+
+Breadcrumb adalah URL yang dipecah jadi beberapa path, setiap path dipisah dengan tanda `>`. Sehingga bentuk URL menjadi seperti hirerarki navigasi per path.
+
+Breadcrumb hanya muncul di device desktop.
+
+Breadcrumb juga bisa dibuat sendiri, yaitu dengan struktur data. Contoh:
+
+```html
+<html>
+  <head>
+    <title>Top 10 Striker Terbaik Sepanjang Masa</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Sepakbola",
+            "item": "https://sport.com/sepakbola"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Statistik",
+            "item": "https://sport.com/sepakbola/statistik"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Top 10 Striker Terbaik Sepanjang Masa"
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body></body>
+</html>
+```
+
+Hasilnya: `https://sport.com > Sepakbola > Statistik > Top 10 Striker Terbaik Sepanjang Masa`.
 
 ### Judul Halaman website
 
