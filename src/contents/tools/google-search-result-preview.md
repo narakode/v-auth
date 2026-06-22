@@ -56,9 +56,9 @@ Nama website juga bisa ditentukan sendiri melalui struktur data yang dibuat oleh
 
 ### Alamat URL
 
-Alamat URL halaman website juga ditampilkan di google search result.
-
 ![Alamat URL di google search result](./site_url.png)
+
+Alamat URL halaman website juga ditampilkan di google search result.
 
 Apabila URL nya berada di dalam path, misal (`https://id.wikipedia.org/wiki/Cristiano_Ronaldo`) maka google biasanya akan menampilkan URL tersebut dalam bentuk breadcrumb (`https://id.wikipedia.org > wiki > Cristiano_Ronaldo`).
 
@@ -108,9 +108,20 @@ Hasilnya: `https://sport.com > Sepakbola > Statistik > Top 10 Striker Terbaik Se
 
 ### Judul
 
+![Judul di google search result](./site_title.png)
+
 Judul halaman website umumnya diambil dari meta tag `<title>` atau bisa juga dari tag `<h1>`, meta `og:title`, dll.
 
-![Judul di google search result](./site_title.png)
+```html
+<!-- Bisa dari title -->
+<title>Cara Membuat Roti Bakar</title>
+
+<!-- Bisa dari nama di opengraph -->
+<meta name="og:title" value="Cara Membuat Roti Bakar" />
+
+<!-- Bisa dari h1 -->
+<h1>Cara Membuat Roti Bakar</h1>
+```
 
 Jika judul terlalu panjang maka akan terpotong.
 
@@ -120,9 +131,9 @@ Tidak ada ketentuan pasti berapa maksimal karakter pada judul. Yang direkomendas
 
 ### Deskripsi
 
-Deskripsi halaman website umumnya diambil dari meta tag `<meta name="description" />`. Kadang Google juga membuat deskripsi sendiri berdasarkan konten yang ada di halaman website.
-
 ![Deskripsi di google search result](./site_description.png)
+
+Deskripsi halaman website umumnya diambil dari meta tag `<meta name="description" />`. Kadang Google juga membuat deskripsi sendiri berdasarkan konten yang ada di halaman website.
 
 Jika deskripsi terlalu panjang maka akan terpotong.
 
@@ -132,7 +143,9 @@ Tidak ada ketentuan pasti berapa maksimal karakter pada deskripsi. Yang direkome
 
 ### Favicon/Logo Halaman Website
 
-Logo yang ditampilkan pada google search result sama dengan yang ditampilkan di website dari tag `<link ref="favicon" />`.
+![Logo di google search result](./site_logo.png)
+
+Logo yang ditampilkan pada google search result sama dengan favicon pada website. Yaitu yang terdapat di tag `<link ref="favicon" />`.
 
 ### Tanggal Publish Halaman Website
 
