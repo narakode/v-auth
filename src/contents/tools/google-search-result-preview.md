@@ -106,17 +106,21 @@ Breadcrumb juga bisa dibuat sendiri, yaitu dengan struktur data. Contoh:
 
 Hasilnya: `https://sport.com > Sepakbola > Statistik > Top 10 Striker Terbaik Sepanjang Masa`.
 
-### Judul Halaman website
+### Judul
 
-Judul halaman website biasanya diambil dari meta tag <title> atau bisa juga dari tag <h1>.
+Judul halaman website umumnya diambil dari meta tag `<title>` atau bisa juga dari tag `<h1>`, meta `og:title`, dll.
 
-Minimal karakter pada judul halaman website adalah 50 karakter.
+![Judul di google search result](./site_title.png)
 
-Maksimal karakter pada judul halaman website adalah 155 karakter atau 575 piksel. Jika judul lebih dari itu, maka judul akan dipotong.
+Jika judul terlalu panjang maka akan terpotong.
+
+![Judul terpotong di google search result](./site_title_truncate.png)
+
+Tidak ada ketentuan pasti berapa maksimal karakter pada judul. Namun yang direkomendasikan adalah 60 karakter atau 575px.
 
 ### Deskripsi Halaman Website
 
-Deskripsi halaman website diambil dari meta tag <meta name="description" />. Kadang google juga membuat deskripsi sendiri berdasarkan konten yang ada di halaman website.
+Deskripsi halaman website diambil dari meta tag `<meta name="description" />`. Kadang google juga membuat deskripsi sendiri berdasarkan konten yang ada di halaman website.
 
 Minimal karakter pada deskripsi halaman website adalah 50 karakter.
 
@@ -124,7 +128,7 @@ Maksimal karakter pada deskripsi halaman website adalah 155 karakter atau 575 pi
 
 ### Favicon/Logo Halaman Website
 
-Logo yang ditampilkan pada google search result sama dengan yang ditampilkan di website dari tag <link ref="favicon" />.
+Logo yang ditampilkan pada google search result sama dengan yang ditampilkan di website dari tag `<link ref="favicon" />`.
 
 ### Tanggal Publish Halaman Website
 
