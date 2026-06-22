@@ -116,15 +116,19 @@ Jika judul terlalu panjang maka akan terpotong.
 
 ![Judul terpotong di google search result](./site_title_truncate.png)
 
-Tidak ada ketentuan pasti berapa maksimal karakter pada judul. Namun yang direkomendasikan adalah 60 karakter atau 575px.
+Tidak ada ketentuan pasti berapa maksimal karakter pada judul. Yang direkomendasikan adalah 60 karakter atau 575px.
 
-### Deskripsi Halaman Website
+### Deskripsi
 
-Deskripsi halaman website diambil dari meta tag `<meta name="description" />`. Kadang google juga membuat deskripsi sendiri berdasarkan konten yang ada di halaman website.
+Deskripsi halaman website umumnya diambil dari meta tag `<meta name="description" />`. Kadang Google juga membuat deskripsi sendiri berdasarkan konten yang ada di halaman website.
 
-Minimal karakter pada deskripsi halaman website adalah 50 karakter.
+![Deskripsi di google search result](./site_description.png)
 
-Maksimal karakter pada deskripsi halaman website adalah 155 karakter atau 575 piksel. Jika deskripsi lebih dari itu, maka deskripsi akan dipotong.
+Jika deskripsi terlalu panjang maka akan terpotong.
+
+![Deskripsi terpotong di google search result](./site_description_truncate.png)
+
+Tidak ada ketentuan pasti berapa maksimal karakter pada deskripsi. Yang direkomendasikan adalah 155 karakter.
 
 ### Favicon/Logo Halaman Website
 
