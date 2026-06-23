@@ -18,7 +18,7 @@ import { Content } from '../contents/tools/google-search-result-preview.md';
       Google Search Result Preview
     </Heading>
 
-    <div class="flex flex-col gap-6 items-center xl:flex-row xl:items-start">
+    <div class="flex flex-col gap-6 items-center xl:flex-row xl:items-stretch">
       <Card class="space-y-4 w-full xl:flex-grow">
         <FormItem
           id="site_title_input"
@@ -74,18 +74,6 @@ import { Content } from '../contents/tools/google-search-result-preview.md';
         <FormItem id="site_icon" label="Icon">
           <Input type="file" accept="image/*" id="site_icon" name="site_icon" />
         </FormItem>
-        <FormItem
-          id="site_keywords"
-          label="Kata Kunci"
-          message="Dipisahkan dengan komah"
-        >
-          <Input
-            type="text"
-            id="site_keywords"
-            placeholder="blog, fishing, travel, website"
-            name="site_keywords"
-          />
-        </FormItem>
         <FormItem id="site_publish_date" label="Tanggal Publish">
           <Input
             type="datetime-local"
@@ -97,7 +85,7 @@ import { Content } from '../contents/tools/google-search-result-preview.md';
 
       <div
         id="preview_wrapper"
-        class="group device-desktop w-full xl:w-fit xl:flex-shrink-0"
+        class="group device-desktop w-full xl:w-fit xl:flex-shrink-0 xl:flex xl:flex-col"
       >
         <nav
           class="hidden md:border-slate-200 md:rounded-t-lg md:border-2 md:border-b-0 md:bg-white md:grid md:grid-cols-2"
@@ -119,7 +107,7 @@ import { Content } from '../contents/tools/google-search-result-preview.md';
         </nav>
         <Card
           customBorder
-          class="border-2 border-slate-200 rounded-lg font-preview-google-sans md:border-t-0 md:rounded-t-none"
+          class="grow border-2 border-slate-200 rounded-lg font-preview-google-sans md:border-t-0 md:rounded-t-none"
         >
           <div
             class="space-y-10 md:group-[.device-mobile]:w-[375px] md:group-[.device-desktop]:w-[652px]"
@@ -127,7 +115,6 @@ import { Content } from '../contents/tools/google-search-result-preview.md';
             <SearchResultPreview />
             <SearchResultPreview skeleton type="1" />
             <SearchResultPreview skeleton type="2" />
-            <SearchResultPreview skeleton type="3" />
           </div>
         </Card>
       </div>
@@ -160,9 +147,6 @@ import { Content } from '../contents/tools/google-search-result-preview.md';
     '#site_description_input',
   ) as HTMLInputElement;
   const siteIcon = document.querySelector('#site_icon') as HTMLInputElement;
-  const siteKeywords = document.querySelector(
-    '#site_keywords',
-  ) as HTMLInputElement;
   const sitePublishDate = document.querySelector(
     '#site_publish_date',
   ) as HTMLInputElement;
@@ -246,9 +230,6 @@ import { Content } from '../contents/tools/google-search-result-preview.md';
 
     setPreviewDescription();
   });
-  siteKeywords.addEventListener('input', (e) => {
-    setPreviewDescription();
-  });
   sitePublishDate.addEventListener('input', (e) => {
     setPreviewDescription();
   });
@@ -290,28 +271,16 @@ import { Content } from '../contents/tools/google-search-result-preview.md';
       siteDescriptionInput.value || defaultPreviewDescription,
       155,
     );
-    const keywords = siteKeywords.value
-      .split(', ')
-      .map((keyword) => keyword.toLowerCase());
-
-    const innerHTML = innerText
-      .split(' ')
-      .map((text) =>
-        keywords.includes(text.toLowerCase().replace(/[^a-zA-Z0-9]/gi, ''))
-          ? `<b>${text}</b>`
-          : text,
-      )
-      .join(' ');
 
     if (sitePublishDate.value) {
       const publishDate = dayjs(sitePublishDate.value).format('DD MMM YYYY');
 
-      previewDescription.innerHTML = `<span>${publishDate}</span> — ${innerHTML}`;
+      previewDescription.innerHTML = `<span>${publishDate}</span> — ${innerText}`;
 
       return;
     }
 
-    previewDescription.innerHTML = innerHTML;
+    previewDescription.innerText = innerText;
   }
 
   function truncate(text: string, length: number): string {

@@ -11,7 +11,6 @@ Ada beberapa informasi terkait halaman website yang ditampilkan di google search
 - Judul
 - Deskripsi
 - Favicon/Logo website
-- Kata kunci
 - Tanggal publish
 
 Berikut detail penjelasan masing-masing informasi halaman website pada google search result:
@@ -141,14 +140,40 @@ Jika deskripsi terlalu panjang maka akan terpotong.
 
 Tidak ada ketentuan pasti berapa maksimal karakter pada deskripsi. Yang direkomendasikan adalah 155 karakter.
 
-### Favicon/Logo Halaman Website
+Beberapa kata di deksripsi yang cocok dengan pencarian pengguna akan ditebalkan.
+
+### Favicon/Logo
 
 ![Logo di google search result](./site_logo.png)
 
 Logo yang ditampilkan pada google search result sama dengan favicon pada website. Yaitu yang terdapat di tag `<link ref="favicon" />`.
 
-### Tanggal Publish Halaman Website
+### Tanggal Publish
 
-Halaman website yang memiliki tanggal publish biasanya akan muncul tanggal tersebut sebelum deskripsi halaman.
+![Tanggal Publish di google search result](./site_publish_date.png)
 
-Tanggal publish diambil dari tanggal yang pada halaman tersebut atau pemilik website bisa juga menentukan tanggalnya di struktur data.
+Apabila di halaman website terdapat tanggal publish, maka tanggal tersebut akan ditampilkan sebelum teks deskripsi.
+
+Tanggal publish diambil dari tanggal yang di halaman tersebut atau pemilik website bisa juga menentukan tanggalnya di struktur data.
+
+```html
+<!-- Tanggal publish dari teks -->
+<p>Diposting tanggal 20 Juni 2026</p>
+
+<!-- Tanggal publish dari struktur data -->
+<html>
+  <head>
+    <title>Cara Membuat NPWP Online</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "NewsArticle",
+        "headline": "Cara Membuat NPWP Online",
+        "datePublished": "2026-07-20T08:00:00+08:00",
+        "dateModified": "2026-07-20T09:20:00+08:00"
+      }
+    </script>
+  </head>
+  <body></body>
+</html>
+```
