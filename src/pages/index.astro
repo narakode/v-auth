@@ -3,25 +3,7 @@ import { Icon } from 'astro-icon/components';
 import Default from '../layouts/Default.astro';
 import Heading from '../components/base/Heading.astro';
 import Card from '../components/base/Card.astro';
-
-const tools = [
-  {
-    name: 'Google Search Result Preview',
-    description: 'Preview your page in google search result',
-    icon: 'tabler:world-search',
-    to: '/google-search-result-preview',
-  },
-  {
-    name: 'Open Graph Preview',
-    description: 'Preview your page in all media sites',
-    icon: 'tabler:photo-alt',
-  },
-  {
-    name: 'SEO HTML Head Meta Tag Generator',
-    description: 'Generate SEO HTML code for head meta tag',
-    icon: 'tabler:file-code',
-  },
-];
+import tools from '../contents/tools/tools.json';
 ---
 
 <Default>

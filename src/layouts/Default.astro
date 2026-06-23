@@ -3,6 +3,7 @@ import '@fontsource/dm-sans';
 import '@fontsource/google-sans';
 import '../style.css';
 import { Icon } from 'astro-icon/components';
+import tools from '../contents/tools/tools.json';
 
 const {
   title = 'NaraSEO - Kumpulan Tool Gratis Untuk Kebutuhan SEO',
@@ -48,10 +49,42 @@ const {
           <div
             class="container mx-auto px-4 flex flex-col gap-4 md:px-0 md:flex-row md:gap-8"
           >
-            <a href="" class="flex items-center gap-2 hover:text-red-700">
-              <Icon name="tabler:tool" />
-              SEO Tools</a
-            >
+            <div class="relative">
+              <button
+                class="group flex w-full flex-wrap items-center justify-between gap-2 cursor-pointer hover:text-red-700"
+                data-toggle="#navbar-seo-tools-menu"
+              >
+                <div class="flex items-center gap-2">
+                  <Icon name="tabler:tool" />
+                  SEO Tools
+                </div>
+                <Icon
+                  name="tabler:chevron-right"
+                  class="group-[.open]:hidden"
+                />
+                <Icon
+                  name="tabler:chevron-down"
+                  class="hidden group-[.open]:block"
+                />
+              </button>
+
+              <div
+                id="navbar-seo-tools-menu"
+                class="hidden flex flex-col pt-4 gap-4 ml-6 md:absolute md:bg-white md:w-fit md:border md:border-slate-200 md:p-4 md:rounded-md md:top-8 md:-left-1/2"
+              >
+                {
+                  tools.map((tool) => (
+                    <a
+                      href={tool.to}
+                      class="flex items-center gap-2 hover:text-red-700"
+                    >
+                      <Icon name={tool.icon} class="shrink-0" />
+                      <p class="whitespace-nowrap">{tool.name}</p>
+                    </a>
+                  ))
+                }
+              </div>
+            </div>
             <a href="" class="flex items-center gap-2 hover:text-red-700">
               <Icon name="tabler:book-2" />
               Learn SEO</a

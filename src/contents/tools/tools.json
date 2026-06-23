@@ -1,0 +1,13 @@
+[
+  {
+    "name": "Google Search Result Preview",
+    "description": "Preview your page in google search result",
+    "icon": "tabler:world-search",
+    "to": "/google-search-result-preview"
+  },
+  {
+    "name": "Open Graph Preview",
+    "description": "Preview your page in all media sites",
+    "icon": "tabler:photo-alt"
+  }
+]
