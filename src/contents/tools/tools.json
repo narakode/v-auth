@@ -1,13 +1,14 @@
 [
   {
     "name": "Google Search Result Preview",
-    "description": "Preview your page in google search result",
+    "description": "Simulasi Halaman Website di Hasil Pencarian Google.",
     "icon": "tabler:world-search",
     "to": "/google-search-result-preview"
   },
   {
-    "name": "Open Graph Preview",
-    "description": "Preview your page in all media sites",
-    "icon": "tabler:photo-alt"
+    "name": "Open Graph Generator & Preview",
+    "description": "Buat dan Preview Open Graph Website di Media Sosial",
+    "icon": "tabler:photo-alt",
+    "to": "/open-graph-generator-preview"
   }
 ]
