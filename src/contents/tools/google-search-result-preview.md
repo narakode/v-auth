@@ -177,3 +177,10 @@ Tanggal publish diambil dari tanggal yang di halaman tersebut atau pemilik websi
   <body></body>
 </html>
 ```
+
+## Tips Membuat Halaman Website Yang Tampil Baik di Google Search Result
+
+1. Pastikan halaman website memiliki logo/favicon.
+2. Judul direkomendasikan tidak lebih dari 60 karakter atau 575px.
+3. Deskripsi direkomendasikan tidak lebih dari 155 karakter.
+4. Pastikan halaman beranda website tersedia dan dapat diakses agar nama website dapat muncul.
