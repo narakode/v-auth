@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "vitest"
+    "test": "vitest",
+    "prepare": "husky"
   },
   "repository": {
     "type": "git",
@@ -18,7 +19,17 @@
     "url": "https://github.com/narakode/v-auth/issues"
   },
   "homepage": "https://github.com/narakode/v-auth#readme",
+  "lint-staged": {
+    "*.{js,ts,css,md}": "prettier --write",
+    "*.{js,ts}": "eslint --cache --fix"
+  },
   "devDependencies": {
+    "eslint": "^10.7.0",
+    "globals": "^17.7.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.0.8",
+    "prettier": "3.9.5",
+    "typescript-eslint": "^8.64.0",
     "vitest": "^4.1.10"
   }
 }
