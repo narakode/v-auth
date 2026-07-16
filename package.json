@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest"
   },
   "repository": {
     "type": "git",
@@ -12,10 +12,13 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "type": "commonjs",
+  "license": "MIT",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/narakode/v-auth/issues"
   },
-  "homepage": "https://github.com/narakode/v-auth#readme"
+  "homepage": "https://github.com/narakode/v-auth#readme",
+  "devDependencies": {
+    "vitest": "^4.1.10"
+  }
 }
