@@ -2,6 +2,8 @@
 
 A package that provides a ready-to-use authentication system for API-based applications.
 
+> This package works seamlessly with [**Laravel FineAuth**](https://github.com/narakode/fineauth).
+
 ## Features
 
 ### Logged-in State
@@ -43,6 +45,10 @@ Configure them using the route `meta` fields.
 ## Guide
 
 ### Login
+
+You must implement your own API login flow.
+
+After a successful login, your API should return the **token**, **user**, and **meta** objects. Then, call the `login` helper with those values.
 
 ```js
 import { login } from 'v-auth'
@@ -99,6 +105,19 @@ const router = createRouter([
 import { isLoggedIn } from 'v-auth'
 
 isLoggedIn() // true | false
+```
+
+### Current User and Meta
+
+Access the current user through the read-only `user` computed value.
+
+Access the meta object through the read-only `meta` computed value.
+
+```js
+import { user, meta } from 'v-auth'
+
+console.log(user.value)
+console.log(meta.value)
 ```
 
 ### Logout
