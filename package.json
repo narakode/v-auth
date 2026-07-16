@@ -1,6 +1,6 @@
 {
-  "name": "vue-auth",
-  "version": "1.0.0",
+  "name": "v-auth",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/narakode/vue-auth.git"
+    "url": "git+https://github.com/narakode/v-auth.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/narakode/vue-auth/issues"
+    "url": "https://github.com/narakode/v-auth/issues"
   },
-  "homepage": "https://github.com/narakode/vue-auth#readme"
+  "homepage": "https://github.com/narakode/v-auth#readme"
 }

@@ -1,4 +1,4 @@
-# Vue Auth
+# V-Auth
 
 A package that provides a ready-to-use authentication system for API-based applications.
 
@@ -45,7 +45,7 @@ Configure them using the route `meta` fields.
 ### Login
 
 ```js
-import { login } from 'vue-auth'
+import { login } from 'v-auth'
 
 login(token, user, meta)
 ```
@@ -58,7 +58,7 @@ First, register the route guards with your router instance.
 
 ```js
 import { createRouter } from 'vue-router'
-import { registerGuards } from 'vue-auth'
+import { registerGuards } from 'v-auth'
 
 const router = createRouter()
 
@@ -96,7 +96,7 @@ const router = createRouter([
 ### Check the Login State
 
 ```js
-import { isLoggedIn } from 'vue-auth'
+import { isLoggedIn } from 'v-auth'
 
 isLoggedIn() // true | false
 ```
@@ -104,7 +104,7 @@ isLoggedIn() // true | false
 ### Logout
 
 ```js
-import { logout } from 'vue-auth'
+import { logout } from 'v-auth'
 
 logout()
 ```
