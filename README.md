@@ -48,12 +48,12 @@ Configure them using the route `meta` fields.
 
 You must implement your own API login flow.
 
-After a successful login, your API should return the **token**, **user**, and **meta** objects. Then, call the `login` helper with those values.
+After a successful login, your API should return the **token**, **user**, and **meta** objects (optional). Then, call the `login` helper with those values.
 
 ```js
-import { login } from 'v-auth'
+import { login } from 'v-auth';
 
-login(token, user, meta)
+login(token, user, meta);
 ```
 
 > After logging in, you must manually redirect the user to the home or dashboard page.
@@ -63,48 +63,48 @@ login(token, user, meta)
 First, register the route guards with your router instance.
 
 ```js
-import { createRouter } from 'vue-router'
-import { registerGuards } from 'v-auth'
+import { createRouter } from 'vue-router';
+import { registerGuards } from 'v-auth';
 
-const router = createRouter()
+const router = createRouter();
 
-registerGuards(router)
+registerGuards(router);
 ```
 
 Add `auth: true` to routes that require authentication.
 
 ```js
 const router = createRouter([
-    {
-        path: '/',
-        name: 'dashboard',
-        meta: {
-            auth: true
-        }
-    }
-])
+  {
+    path: '/',
+    name: 'dashboard',
+    meta: {
+      auth: true,
+    },
+  },
+]);
 ```
 
 Add `guest: true` to routes that should only be accessible to guests.
 
 ```js
 const router = createRouter([
-    {
-        path: '/login',
-        name: 'login',
-        meta: {
-            guest: true
-        }
-    }
-])
+  {
+    path: '/login',
+    name: 'login',
+    meta: {
+      guest: true,
+    },
+  },
+]);
 ```
 
 ### Check the Login State
 
 ```js
-import { isLoggedIn } from 'v-auth'
+import { isLoggedIn } from 'v-auth';
 
-isLoggedIn() // true | false
+isLoggedIn(); // true | false
 ```
 
 ### Current User and Meta
@@ -114,18 +114,18 @@ Access the current user through the read-only `user` computed value.
 Access the meta object through the read-only `meta` computed value.
 
 ```js
-import { user, meta } from 'v-auth'
+import { user, meta } from 'v-auth';
 
-console.log(user.value)
-console.log(meta.value)
+console.log(user.value);
+console.log(meta.value);
 ```
 
 ### Logout
 
 ```js
-import { logout } from 'v-auth'
+import { logout } from 'v-auth';
 
-logout()
+logout();
 ```
 
 > After logging out, you must manually redirect the user to `/login`.
