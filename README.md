@@ -4,16 +4,18 @@ A package that provides a ready-to-use authentication system for API-based appli
 
 > This package works seamlessly with [**Laravel FineAuth**](https://github.com/narakode/fineauth).
 
-## Instalation
+## Installation
+
+Install the package.
 
 ```bash
 npm install v-auth
 ```
 
-Install to vue instance.
+Install it into your Vue application.
 
 ```js
-import createApp from 'vue';
+import { createApp } from 'vue';
 import vAuth from 'v-auth';
 
 const app = createApp();
@@ -76,6 +78,38 @@ const router = createRouter([
     },
   },
 ]);
+```
+
+### Load Current User
+
+The current user and meta are stored in memory, so they are cleared when the page is refreshed.
+
+You need to call your API's **Get Current User** endpoint when the application loads.
+
+```vue
+<script setup>
+async function loadCurrentUser() {
+  // ...
+}
+
+loadCurrentUser();
+</script>
+```
+
+### Refresh Token
+
+The access token is stored in memory, so it is cleared when the page is refreshed.
+
+You need to call your API's **Refresh Token** endpoint whenever the application loads.
+
+```vue
+<script setup>
+async function refreshToken() {
+  // ...
+}
+
+refreshToken();
+</script>
 ```
 
 ### Check the Login State

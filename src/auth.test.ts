@@ -8,7 +8,7 @@ import {
   logout,
   meta,
   user,
-} from './index.js';
+} from './auth.js';
 
 beforeEach(() => {
   vi.resetAllMocks();

@@ -1,5 +1,5 @@
-import type { NavigationGuard } from 'vue-router';
-import { loggedIn } from './index.js';
+import type { NavigationGuard, Router } from 'vue-router';
+import { loggedIn } from './auth.js';
 
 export const auth: NavigationGuard = (to) => {
   if (to.matched.some((route) => route.meta.auth) && !loggedIn.value) {
@@ -16,3 +16,8 @@ export const guest: NavigationGuard = (to) => {
     };
   }
 };
+
+export function registerGuards(router: Router) {
+  router.beforeEach(auth);
+  router.beforeEach(guest);
+}
