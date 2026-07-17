@@ -1,14 +1,19 @@
-import { describe, expect, test } from 'vitest';
-import { accessToken, loggedIn, login, meta, user } from './index.js';
+import { beforeEach, describe, expect, test, vi } from 'vitest';
+import { accessToken, init, loggedIn, login, meta, user } from './index.js';
+
+beforeEach(() => {
+  accessToken.value = null;
+  loggedIn.value = false;
+});
 
 describe('login', () => {
-  test('set logged in state', () => {
+  test('sets logged in state', () => {
     login('test', {});
 
     expect(loggedIn.value).toBe(true);
   });
 
-  test('set access token state', () => {
+  test('sets access token state', () => {
     const newAccessToken = 'test';
 
     login(newAccessToken, {});
@@ -16,7 +21,7 @@ describe('login', () => {
     expect(accessToken.value).toBe(newAccessToken);
   });
 
-  test('set user state', () => {
+  test('sets user state', () => {
     const newUser = { id: 1, name: 'test' };
 
     login('test', newUser);
@@ -24,11 +29,21 @@ describe('login', () => {
     expect(user.value).toEqual(newUser);
   });
 
-  test('set meta state', () => {
+  test('sets meta state', () => {
     const newMeta = { permissions: ['*'] };
 
     login('test', {}, newMeta);
 
     expect(meta.value).toEqual(newMeta);
+  });
+});
+
+describe('init', () => {
+  test('sets logged in state from localstorage', () => {
+    vi.spyOn(localStorage, 'getItem').mockImplementation(() => 'true');
+
+    init();
+
+    expect(loggedIn.value).toEqual(true);
   });
 });
