@@ -8,3 +8,11 @@ export const auth: NavigationGuard = (to) => {
     };
   }
 };
+
+export const guest: NavigationGuard = (to) => {
+  if (to.matched.some((route) => route.meta.guest) && loggedIn.value) {
+    return {
+      name: 'home',
+    };
+  }
+};
