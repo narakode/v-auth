@@ -5,11 +5,13 @@ import {
   init,
   loggedIn,
   login,
+  logout,
   meta,
   user,
 } from './index.js';
 
 beforeEach(() => {
+  vi.resetAllMocks();
   _loggedIn.value = false;
 });
 
@@ -60,5 +62,24 @@ describe('init', () => {
     init();
 
     expect(loggedIn.value).toEqual(true);
+  });
+});
+
+describe('logout', () => {
+  test('resets all states', () => {
+    login('test', { id: 1 }, { menus: [] });
+
+    logout();
+
+    expect(loggedIn.value).toBe(false);
+    expect(user.value).toBe(null);
+    expect(meta.value).toBe(null);
+  });
+  test('resets logged in local storage', () => {
+    login('test', {});
+
+    logout();
+
+    expect(localStorage.getItem('logged_in')).toBe('false');
   });
 });
