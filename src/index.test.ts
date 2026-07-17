@@ -7,10 +7,18 @@ beforeEach(() => {
 });
 
 describe('login', () => {
-  test('sets logged in state', () => {
-    login('test', {});
+  describe('set logged in state', () => {
+    test('sets in memory', () => {
+      login('test', {});
 
-    expect(loggedIn.value).toBe(true);
+      expect(loggedIn.value).toBe(true);
+    });
+
+    test('sets in local storage', () => {
+      login('test', {});
+
+      expect(localStorage.getItem('logged_in')).toBe('true');
+    });
   });
 
   test('sets access token state', () => {

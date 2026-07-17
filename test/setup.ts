@@ -1,10 +1,12 @@
 import { vi } from 'vitest';
 
 const locaStorageMock = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  store: {} as Record<string, any>,
+  store: {} as Record<string, string>,
   getItem(key: string) {
     return this.store[key];
+  },
+  setItem(key: string, value: string) {
+    this.store[key] = value;
   },
 };
 

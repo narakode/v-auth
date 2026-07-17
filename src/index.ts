@@ -15,6 +15,8 @@ export function login(newAccessToken: string, newUser: User, newMeta?: Meta) {
   accessToken.value = newAccessToken;
   user.value = newUser;
   meta.value = newMeta;
+
+  localStorage.setItem('logged_in', `${loggedIn.value}`);
 }
 
 export function init() {
