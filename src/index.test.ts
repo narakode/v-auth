@@ -1,9 +1,16 @@
 import { beforeEach, describe, expect, test, vi } from 'vitest';
-import { accessToken, init, loggedIn, login, meta, user } from './index.js';
+import {
+  _loggedIn,
+  accessToken,
+  init,
+  loggedIn,
+  login,
+  meta,
+  user,
+} from './index.js';
 
 beforeEach(() => {
-  accessToken.value = null;
-  loggedIn.value = false;
+  _loggedIn.value = false;
 });
 
 describe('login', () => {

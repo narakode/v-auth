@@ -107,6 +107,14 @@ import { loggedIn } from 'v-auth';
 loggedIn.value; // true | false
 ```
 
+### Access Token
+
+```js
+import { accessToken } from 'v-auth';
+
+accessToken.value; // 'jdaosjdosa' | null
+```
+
 ### Current User and Meta
 
 Access the current user through the read-only `user` computed value.
