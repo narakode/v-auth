@@ -4,43 +4,33 @@ A package that provides a ready-to-use authentication system for API-based appli
 
 > This package works seamlessly with [**Laravel FineAuth**](https://github.com/narakode/fineauth).
 
-## Features
+## Instalation
 
-### Logged-in State
+```bash
+npm install v-auth
+```
 
-The logged-in state is stored in **Local Storage** to determine whether the user is authenticated.
+Install to vue instance.
 
-### Current User Data
+```js
+import createApp from 'vue';
+import vAuth from 'v-auth';
 
-The current user is retrieved:
+const app = createApp();
 
-- After a successful login.
-- On every page refresh (if the user is logged in) by calling the **Get Current User** endpoint.
+app.use(vAuth);
+```
 
-The user data is stored in **memory**.
+Register the route guards with your router instance.
 
-### Access Token
+```js
+import { createRouter } from 'vue-router';
+import { registerGuards } from 'v-auth';
 
-The access token is obtained:
+const router = createRouter();
 
-- After a successful login.
-- After a token refresh.
-
-The token is stored in **memory** and is automatically attached to the request headers for every API request.
-
-Since the access token is stored only in memory, a token refresh is always performed whenever the page is refreshed.
-
-### Refresh Token
-
-The refresh token is stored in an **HTTP-only cookie**.
-
-Whenever the page is refreshed and the user is logged in, the refresh token is used to obtain a new access token before calling the **Get Current User** endpoint.
-
-### Route Guards
-
-Built-in route guards are provided to protect routes that require authentication or should only be accessible to guests.
-
-Configure them using the route `meta` fields.
+registerGuards(router);
+```
 
 ## Guide
 
@@ -59,17 +49,6 @@ login(token, user, meta);
 > After logging in, you must manually redirect the user to the home or dashboard page.
 
 ### Protect Routes for Guests and Authenticated Users
-
-First, register the route guards with your router instance.
-
-```js
-import { createRouter } from 'vue-router';
-import { registerGuards } from 'v-auth';
-
-const router = createRouter();
-
-registerGuards(router);
-```
 
 Add `auth: true` to routes that require authentication.
 
