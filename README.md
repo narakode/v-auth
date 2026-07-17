@@ -102,9 +102,9 @@ const router = createRouter([
 ### Check the Login State
 
 ```js
-import { isLoggedIn } from 'v-auth';
+import { loggedIn } from 'v-auth';
 
-isLoggedIn(); // true | false
+loggedIn.value; // true | false
 ```
 
 ### Current User and Meta
