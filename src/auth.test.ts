@@ -1,18 +1,22 @@
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 import {
+  _expiresAt,
   _loggedIn,
   accessToken,
+  expiresAt,
   init,
   loggedIn,
   login,
   logout,
   meta,
   user,
+  isExpired,
 } from './auth.js';
 
 beforeEach(() => {
   vi.resetAllMocks();
   _loggedIn.value = false;
+  _expiresAt.value = 0;
 });
 
 describe('login', () => {
@@ -38,6 +42,14 @@ describe('login', () => {
     expect(accessToken.value).toBe(newAccessToken);
   });
 
+  test('sets expiry state', () => {
+    const newExpiry = Date.now() + 10000;
+
+    login('test', {}, newExpiry);
+
+    expect(expiresAt.value).toEqual(newExpiry);
+  });
+
   test('sets user state', () => {
     const newUser = { id: 1, name: 'test' };
 
@@ -49,7 +61,7 @@ describe('login', () => {
   test('sets meta state', () => {
     const newMeta = { permissions: ['*'] };
 
-    login('test', {}, newMeta);
+    login('test', {}, 0, newMeta);
 
     expect(meta.value).toEqual(newMeta);
   });
@@ -67,7 +79,7 @@ describe('init', () => {
 
 describe('logout', () => {
   test('resets all states', () => {
-    login('test', { id: 1 }, { menus: [] });
+    login('test', { id: 1 }, 0, { menus: [] });
 
     logout();
 
@@ -81,5 +93,18 @@ describe('logout', () => {
     logout();
 
     expect(localStorage.getItem('logged_in')).toBe('false');
+  });
+});
+
+describe('isExpired', () => {
+  test('returns true when expired', () => {
+    _expiresAt.value = Date.now() - 24 * 60 * 60 * 1000;
+
+    expect(isExpired()).toBe(true);
+  });
+  test('returns false when not expired', () => {
+    _expiresAt.value = Date.now() + 24 * 60 * 60 * 1000;
+
+    expect(isExpired()).toBe(false);
   });
 });

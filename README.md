@@ -46,12 +46,17 @@ registerGuards(router, {
 
 You must implement your own API login flow.
 
-After a successful login, your API should return the **token**, **user**, and **meta** objects (optional). Then, call the `login` helper with those values.
+After a successful login, your API should return the following values, then call the `login` helper.
+
+- `token` — a string.
+- `user` — an object.
+- `expires_at` _(optional)_ — a `Date`, date string, or timestamp.
+- `meta` _(optional)_ — an object.
 
 ```js
 import { login } from 'v-auth';
 
-login(token, user, meta);
+login(token, user, expires_at, meta);
 ```
 
 > After logging in, you must manually redirect the user to the home or dashboard page.
@@ -124,6 +129,14 @@ refreshToken();
 import { loggedIn } from 'v-auth';
 
 loggedIn.value; // true | false
+```
+
+### Check Whether the Access Token Has Expired
+
+```js
+import { isExpired } from 'v-auth';
+
+isExpired(); // true | false
 ```
 
 ### Access Token
