@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, test, vi } from 'vitest';
-import { auth, guest } from './guards.js';
+import { createAuthGuard, createGuestGuard } from './guards.js';
 import type { RouteLocationNormalized } from 'vue-router';
 import { _loggedIn } from './auth.js';
 
@@ -7,7 +7,7 @@ beforeEach(() => (_loggedIn.value = false));
 
 describe('auth', () => {
   describe('when require auth', () => {
-    test('return login when not logged in', () => {
+    test('return unauthenticated path when not logged in', () => {
       const to = {
         matched: [
           {
@@ -18,13 +18,15 @@ describe('auth', () => {
         ],
       };
 
+      const auth = createAuthGuard({ redirectOnUnauthenticated: '/login' });
+
       expect(
         auth(
           to as unknown as RouteLocationNormalized,
           {} as RouteLocationNormalized,
           vi.fn(),
         ),
-      ).toEqual({ name: 'login' });
+      ).toEqual('/login');
     });
 
     test('continue when logged in', () => {
@@ -39,6 +41,8 @@ describe('auth', () => {
           },
         ],
       };
+
+      const auth = createAuthGuard();
 
       expect(
         auth(
@@ -55,6 +59,8 @@ describe('auth', () => {
       matched: [],
     };
 
+    const auth = createAuthGuard();
+
     expect(
       auth(
         to as unknown as RouteLocationNormalized,
@@ -67,7 +73,7 @@ describe('auth', () => {
 
 describe('guest', () => {
   describe('when require guest', () => {
-    test('return home when logged in', () => {
+    test('return authenticated path when logged in', () => {
       _loggedIn.value = true;
 
       const to = {
@@ -80,13 +86,15 @@ describe('guest', () => {
         ],
       };
 
+      const guest = createGuestGuard({ redirectOnAuthenticated: '/home' });
+
       expect(
         guest(
           to as unknown as RouteLocationNormalized,
           {} as RouteLocationNormalized,
           vi.fn(),
         ),
-      ).toEqual({ name: 'home' });
+      ).toEqual('/home');
     });
 
     test('continue when not logged in', () => {
@@ -99,6 +107,8 @@ describe('guest', () => {
           },
         ],
       };
+
+      const guest = createGuestGuard();
 
       expect(
         guest(
@@ -116,6 +126,8 @@ describe('guest', () => {
     const to = {
       matched: [],
     };
+
+    const guest = createGuestGuard();
 
     expect(
       guest(

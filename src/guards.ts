@@ -1,23 +1,45 @@
 import type { NavigationGuard, Router } from 'vue-router';
 import { loggedIn } from './auth.js';
 
-export const auth: NavigationGuard = (to) => {
-  if (to.matched.some((route) => route.meta.auth) && !loggedIn.value) {
-    return {
-      name: 'login',
-    };
-  }
-};
+export function createAuthGuard(
+  options: { redirectOnUnauthenticated: string } = {
+    redirectOnUnauthenticated: '/login',
+  },
+): NavigationGuard {
+  return (to) => {
+    if (to.matched.some((route) => route.meta.auth) && !loggedIn.value) {
+      return options.redirectOnUnauthenticated;
+    }
+  };
+}
 
-export const guest: NavigationGuard = (to) => {
-  if (to.matched.some((route) => route.meta.guest) && loggedIn.value) {
-    return {
-      name: 'home',
-    };
-  }
-};
+export function createGuestGuard(
+  options: { redirectOnAuthenticated: string } = {
+    redirectOnAuthenticated: '/',
+  },
+): NavigationGuard {
+  return (to) => {
+    if (to.matched.some((route) => route.meta.guest) && loggedIn.value) {
+      return options.redirectOnAuthenticated;
+    }
+  };
+}
 
-export function registerGuards(router: Router) {
-  router.beforeEach(auth);
-  router.beforeEach(guest);
+export function registerGuards(
+  router: Router,
+  options: {
+    redirectOnUnauthenticated: string;
+    redirectOnAuthenticated: string;
+  },
+) {
+  router.beforeEach(
+    createAuthGuard({
+      redirectOnUnauthenticated: options.redirectOnUnauthenticated,
+    }),
+  );
+  router.beforeEach(
+    createGuestGuard({
+      redirectOnAuthenticated: options.redirectOnAuthenticated,
+    }),
+  );
 }

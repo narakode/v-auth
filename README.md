@@ -25,13 +25,19 @@ app.use(vAuth);
 
 Register the route guards with your router instance.
 
+- `redirectOnUnauthenticated` specifies the path to redirect unauthenticated users to.
+- `redirectOnAuthenticated` specifies the path to redirect authenticated users to.
+
 ```js
 import { createRouter } from 'vue-router';
 import { registerGuards } from 'v-auth';
 
 const router = createRouter();
 
-registerGuards(router);
+registerGuards(router, {
+  redirectOnUnauthenticated: '/login',
+  redirectOnAuthenticated: '/',
+});
 ```
 
 ## Guide
