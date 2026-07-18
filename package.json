@@ -1,8 +1,10 @@
 {
   "name": "vue-auth-helper",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.mts",
@@ -18,7 +20,10 @@
     "type": "git",
     "url": "git+https://github.com/narakode/vue-auth-helper.git"
   },
-  "keywords": ["vue", "auth"],
+  "keywords": [
+    "vue",
+    "auth"
+  ],
   "author": "Narakode <ibrahimalanshor6@gmail.com> (https://narakode.id)",
   "license": "MIT",
   "type": "module",
