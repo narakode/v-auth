@@ -1,4 +1,4 @@
-# V-Auth
+# Vue Auth Helper
 
 A package that provides a ready-to-use authentication system for API-based applications.
 
@@ -24,14 +24,14 @@ A package that provides a ready-to-use authentication system for API-based appli
 Install the package.
 
 ```bash
-npm install v-auth
+npm install vue-auth-helper
 ```
 
 Install it into your Vue application.
 
 ```js
 import { createApp } from 'vue';
-import vAuth from 'v-auth';
+import vAuth from 'vue-auth-helper';
 
 const app = createApp();
 
@@ -45,7 +45,7 @@ Register the route guards with your router instance.
 
 ```js
 import { createRouter } from 'vue-router';
-import { registerGuards } from 'v-auth';
+import { registerGuards } from 'vue-auth-helper';
 
 const router = createRouter();
 
@@ -69,7 +69,7 @@ After a successful login, your API should return the following values, then call
 - `meta` _(optional)_ — an object.
 
 ```js
-import { login } from 'v-auth';
+import { login } from 'vue-auth-helper';
 
 login(token, user, expires_at, meta);
 ```
@@ -141,7 +141,7 @@ refreshToken();
 ### Check the Login State
 
 ```js
-import { loggedIn } from 'v-auth';
+import { loggedIn } from 'vue-auth-helper';
 
 loggedIn.value; // true | false
 ```
@@ -149,7 +149,7 @@ loggedIn.value; // true | false
 ### Check Whether the Access Token Has Expired
 
 ```js
-import { isExpired } from 'v-auth';
+import { isExpired } from 'vue-auth-helper';
 
 isExpired(); // true | false
 ```
@@ -157,7 +157,7 @@ isExpired(); // true | false
 ### Access Token
 
 ```js
-import { accessToken } from 'v-auth';
+import { accessToken } from 'vue-auth-helper';
 
 accessToken.value; // 'jdaosjdosa' | null
 ```
@@ -169,7 +169,7 @@ Access the current user through the read-only `user` computed value.
 Access the meta object through the read-only `meta` computed value.
 
 ```js
-import { user, meta } from 'v-auth';
+import { user, meta } from 'vue-auth-helper';
 
 console.log(user.value);
 console.log(meta.value);
@@ -178,7 +178,7 @@ console.log(meta.value);
 ### Logout
 
 ```js
-import { logout } from 'v-auth';
+import { logout } from 'vue-auth-helper';
 
 logout();
 ```

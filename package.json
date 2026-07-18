@@ -1,5 +1,5 @@
 {
-  "name": "v-auth",
+  "name": "vue-auth-helper",
   "version": "0.0.1",
   "description": "",
   "files": ["dist"],
@@ -16,16 +16,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/narakode/v-auth.git"
+    "url": "git+https://github.com/narakode/vue-auth-helper.git"
   },
   "keywords": ["vue", "auth"],
   "author": "Narakode <ibrahimalanshor6@gmail.com> (https://narakode.id)",
   "license": "MIT",
   "type": "module",
   "bugs": {
-    "url": "https://github.com/narakode/v-auth/issues"
+    "url": "https://github.com/narakode/vue-auth-helper/issues"
   },
-  "homepage": "https://github.com/narakode/v-auth#readme",
+  "homepage": "https://github.com/narakode/vue-auth-helper#readme",
   "lint-staged": {
     "*.{js,ts,css,md}": "prettier --write",
     "*.{js,ts}": "eslint --cache --fix"
