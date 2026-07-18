@@ -4,6 +4,21 @@ A package that provides a ready-to-use authentication system for API-based appli
 
 > This package works seamlessly with [**Laravel FineAuth**](https://github.com/narakode/fineauth).
 
+## What This Package Does
+
+- Stores your authentication state in a global reactive state.
+- Provides `auth` and `guest` route guards.
+- Provides `login` and `logout` helpers.
+- Tracks access token expiration.
+
+## What This Package Does Not Do
+
+- Create a login page.
+- Implement the authentication request to your API server.
+- Automatically attach the access token to request headers.
+- Automatically refresh the access token.
+- Automatically fetch the current user.
+
 ## Installation
 
 Install the package.
