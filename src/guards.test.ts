@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, test, vi } from 'vitest';
-import { createAuthGuard, createGuestGuard } from './guards.js';
+import { createAuthGuard, createGuestGuard } from './guards';
 import type { RouteLocationNormalized } from 'vue-router';
-import { _loggedIn } from './auth.js';
+import { _loggedIn } from './auth';
 
 beforeEach(() => (_loggedIn.value = false));
 

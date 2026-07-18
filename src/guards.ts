@@ -1,5 +1,5 @@
 import type { NavigationGuard, Router } from 'vue-router';
-import { loggedIn } from './auth.js';
+import { loggedIn } from './auth';
 
 export function createAuthGuard(
   options: { redirectOnUnauthenticated: string } = {

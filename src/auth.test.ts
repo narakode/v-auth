@@ -11,7 +11,7 @@ import {
   meta,
   user,
   isExpired,
-} from './auth.js';
+} from './auth';
 
 beforeEach(() => {
   vi.resetAllMocks();

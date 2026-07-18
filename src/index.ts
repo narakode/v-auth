@@ -1,4 +1,4 @@
-import { init } from './auth.js';
+import { init } from './auth';
 
 export {
   accessToken,
@@ -8,8 +8,8 @@ export {
   login,
   logout,
   isExpired,
-} from './auth.js';
-export { registerGuards } from './guards.js';
+} from './auth';
+export { registerGuards } from './guards';
 
 export default {
   install: () => {
